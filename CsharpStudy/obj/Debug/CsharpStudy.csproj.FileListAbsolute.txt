@@ -1,0 +1,16 @@
+E:\Study\CSharp\CsharpStudy\CsharpStudy\bin\Debug\CsharpStudy.exe.config
+E:\Study\CSharp\CsharpStudy\CsharpStudy\bin\Debug\CsharpStudy.exe
+E:\Study\CSharp\CsharpStudy\CsharpStudy\bin\Debug\CsharpStudy.pdb
+E:\Study\CSharp\CsharpStudy\CsharpStudy\obj\Debug\CsharpStudy.csproj.AssemblyReference.cache
+E:\Study\CSharp\CsharpStudy\CsharpStudy\obj\Debug\CsharpStudy.csproj.CoreCompileInputs.cache
+E:\Study\CSharp\CsharpStudy\CsharpStudy\obj\Debug\CsharpStudy.exe
+E:\Study\CSharp\CsharpStudy\CsharpStudy\obj\Debug\CsharpStudy.pdb
+E:\Study\CSharp\CsharpStudy\CsharpStudy\obj\Debug\CsharpStudy.exe.config
+E:\Study\CSharp\Lion7\CsharpStudy\bin\Debug\CsharpStudy.exe.config
+E:\Study\CSharp\Lion7\CsharpStudy\bin\Debug\CsharpStudy.exe
+E:\Study\CSharp\Lion7\CsharpStudy\bin\Debug\CsharpStudy.pdb
+E:\Study\CSharp\Lion7\CsharpStudy\obj\Debug\CsharpStudy.csproj.AssemblyReference.cache
+E:\Study\CSharp\Lion7\CsharpStudy\obj\Debug\CsharpStudy.exe.config
+E:\Study\CSharp\Lion7\CsharpStudy\obj\Debug\CsharpStudy.csproj.CoreCompileInputs.cache
+E:\Study\CSharp\Lion7\CsharpStudy\obj\Debug\CsharpStudy.exe
+E:\Study\CSharp\Lion7\CsharpStudy\obj\Debug\CsharpStudy.pdb
