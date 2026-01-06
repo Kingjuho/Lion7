@@ -43,6 +43,7 @@ namespace CsharpStudy
             */
 
 
+
             /***************************/
             /* 2026/01/05 C# Study #2 */
             /*************************/
@@ -190,15 +191,254 @@ namespace CsharpStudy
             //Console.WriteLine($"논리값: {flagAsString}");
 
 
-            Console.Write("안");
-            Thread.Sleep(1000);
-            Console.Write("녕");
-            Thread.Sleep(1000);
-            Console.Write("하");
-            Thread.Sleep(1000);
-            Console.Write("세");
-            Thread.Sleep(1000);
-            Console.Write("요");
+            //Console.Write("안");
+            //Thread.Sleep(1000);
+            //Console.Write("녕");
+            //Thread.Sleep(1000);
+            //Console.Write("하");
+            //Thread.Sleep(1000);
+            //Console.Write("세");
+            //Thread.Sleep(1000);
+            //Console.Write("요");
+
+
+
+            /***************************/
+            /* 2026/01/06 C# Study #3 */
+            /*************************/
+
+            //Console.Write("이름을 입력하세요: ");
+            //string userName = Console.ReadLine();
+
+            //Console.WriteLine($"안녕하세요, {userName}님!");
+
+
+            //Console.Write("나이를 입력하세요: ");
+            //int age = int.TryParse(Console.ReadLine(), out age) ? age : 1;
+
+            //Console.WriteLine($"내년에는 {age + 1}살이 되겠군요!");
+
+
+            // 2진수 -> 10진수 변환
+            //Console.Write("2진수를 입력하세요: ");
+            //string binaryValue = Console.ReadLine();
+            //int decimalValue = Convert.ToInt32(binaryValue, 2);
+
+            //Console.WriteLine($"2진수 값: {binaryValue}");
+            //Console.WriteLine($"10진수 값: {decimalValue}");
+
+
+            // 10진수 -> 2진수 변환
+            //Console.Write("\n10진수를 입력하세요: ");
+            //int decimalInput = int.TryParse(Console.ReadLine(), out decimalInput) ? decimalInput : 0;
+            //string binaryOutput = Convert.ToString(decimalInput, 2);
+
+            //Console.WriteLine($"10진수 값: {decimalInput}");
+            //Console.WriteLine($"2진수 값: {binaryOutput}");
+
+
+            //Console.WriteLine("=== 캐릭터 생성 ===");
+            //Console.Write("캐릭터 이름을 입력하세요: ");
+            //string name = Console.ReadLine();
+            //Console.WriteLine($"환영합니다, {name}님!");
+            //Console.Write("시작 레벨을 입력하세요: ");
+            //string level = Console.ReadLine();
+            //Console.WriteLine($"{name}님의 시작 레벨은 {level}입니다.");
+
+
+            //var name = "Alice";
+            //var age = 25;
+            //var isStudent = true;
+
+            //Console.WriteLine($"이름: {name}, 나이: {age}, 학생 여부: {isStudent}");
+
+
+            // 1. 암시적 변환
+            //int smallNumber = 100;      // int (4바이트)
+            //long bigNumber = smallNumber; // int -> long (8바이트)
+            //double doubleNumber = smallNumber; // int -> double (8바이트)
+
+            //Console.WriteLine("=== 암시적 변환 ===");
+            //Console.WriteLine($"int: {smallNumber.GetType()}");
+            //Console.WriteLine($"long: {bigNumber.GetType()}");
+            //Console.WriteLine($"double: {doubleNumber.GetType()}");
+
+            // 2. 명시적 변환
+            //double pi = 3.14159;
+            //int intPi = (int) pi; // double -> int
+
+            //Console.WriteLine("\n=== 명시적 변환 ===");
+            //Console.WriteLine($"double: {pi}");
+            //Console.WriteLine($"int: {intPi}");
+
+
+            // 연산자
+            //int a = 5, b = 3;
+            //Console.WriteLine($"합: {a + b}");
+            //Console.WriteLine($"a = b?: {a == b}");
+
+            //a = 10;
+            //Console.WriteLine($"{a + b}, {a - b}, {a * b}, {a / b}, {a % b}");      // 산술 연산자
+
+
+            //int a = 5, b = 4;
+            //Console.WriteLine(a += b);
+            //a = 5;
+            //Console.WriteLine(a -= b);
+            //a = 5;
+            //Console.WriteLine(a *= b);
+            //a = 5;
+            //Console.WriteLine(a /= b);
+            //a = 5;
+            //Console.WriteLine(a %= b);
+
+
+            //int baseAttack = 50;
+            //int weaponBonus = 30;
+
+            //Console.WriteLine("=== 공격력 계산 ===");
+            //Console.WriteLine($"기본 공격력: {baseAttack}");
+            //Console.WriteLine($"무기 데미지: {weaponBonus}");
+            //Console.WriteLine($"총 공격력: {baseAttack + weaponBonus}");
+
+            //int playerHealth = 100;
+            //int damage = 25;
+
+            //Console.WriteLine("\n=== 데미지 계산 ===");
+            //Console.WriteLine($"받은 데미지: {damage}");
+            //Console.WriteLine($"남은 체력: {playerHealth -= damage}");
+
+            //int monsterSkilled = 5;
+            //int expPerMonster = 100;
+
+            //Console.WriteLine("\n=== 경험치 계산 ===");
+            //Console.WriteLine($"처치한 몬스터 수: {monsterSkilled}마리");
+            //Console.WriteLine($"획득한 경험치: {monsterSkilled * expPerMonster}");
+
+            //int totalGold = 1000;
+            //int playerCount = 4;
+
+            //Console.WriteLine("\n=== 골드 분배 ===");
+            //Console.WriteLine($"총 골드: {totalGold}G");
+            //Console.WriteLine($"플레이어 수: {playerCount}명");
+            //Console.WriteLine($"1인당 골드: {totalGold / playerCount}G");
+            //Console.WriteLine($"남은 골드: {totalGold % playerCount}G");
+
+
+            //int b = 3;
+            //Console.WriteLine(b++);
+            //Console.WriteLine(b);
+            //Console.WriteLine(--b);
+            //Console.WriteLine(b);
+
+
+            //int kills = 0;
+            //Console.WriteLine("=== 몬스터 처치 ===");
+            //Console.WriteLine($"고블린 처치! (킬 카운트: {++kills})");
+            //Console.WriteLine($"오크 처치! (킬 카운트: {++kills})");
+            //Console.WriteLine($"드래곤 처치! (킬 카운트: {++kills})");
+            //Console.WriteLine($"총 처치 수: {kills}마리");
+
+            //int bullets = 30;
+            //Console.WriteLine("\n=== 사격 ===");
+            //Console.WriteLine($"남은 탄약: {bullets}");
+            //Console.WriteLine($"발사! 남은 탄약: {--bullets}");
+            //Console.WriteLine($"발사! 남은 탄약: {--bullets}");
+            //Console.WriteLine($"발사! 남은 탄약: {--bullets}");
+
+            //int count = 3;
+            //Console.WriteLine("\n=== 카운트다운 ===");
+            //Console.WriteLine(count);
+            //Console.WriteLine(--count);
+            //Console.WriteLine(--count);
+            //Console.WriteLine("발사!");
+
+
+            //int x = 5, y = 10;
+            //Console.WriteLine($"x < y: {x < y}");   // 참
+            //Console.WriteLine($"x > y: {x > y}");   // 거짓
+            //Console.WriteLine($"x <= y: {x <= y}"); // 참
+            //Console.WriteLine($"x >= y: {x >= y}"); // 거짓
+            //Console.WriteLine($"x == y: {x == y}");   // 거짓
+            //Console.WriteLine($"x != y: {x != y}");   // 참
+
+            //// AND
+            //Console.WriteLine(false && true);
+            //Console.WriteLine(true && false);
+            //Console.WriteLine(false && false);
+            //Console.WriteLine(true && true);
+            //Console.WriteLine();
+            //// OR
+            //Console.WriteLine(false || true);
+            //Console.WriteLine(true || false);
+            //Console.WriteLine(false || false);
+            //Console.WriteLine(true || true);
+            //// 비트 연산자
+            //Console.WriteLine(5 & 3);   // 0101 & 0011 = 0001 (1)
+            //Console.WriteLine(5 | 3);   // 0101 | 0011 = 0111 (7)
+            //Console.WriteLine(5 ^ 3);   // 0101 ^ 0011 = 0110 (6)
+            //Console.WriteLine(~5);      // ~0101 = 1010 (-6)
+            //// 시프트 연산자
+            //Console.WriteLine(5 << 1); // 0101 << 1 = 1010 (10)
+            //Console.WriteLine(5 >> 1); // 0101 >> 1 = 0010 (2)
+
+
+            // 문제 1
+            int currentHp = 80;
+            int maxHp = 100;
+
+            Console.WriteLine("=== 문제 1 ===");
+            Console.WriteLine($"초기 체력: {currentHp}/{maxHp}");
+            Console.WriteLine($"데미지 -25: {currentHp -= 25}/{maxHp}");
+            Console.WriteLine($"회복 +30: {currentHp += 30}/{maxHp}");
+            Console.WriteLine($"독 데미지 -5: {currentHp -= 5}/{maxHp}");
+
+
+            // 문제 2
+            int expPerMonster = 150;
+            int monstersKilled = 3;
+            int expForLevelUp = 500;
+
+            Console.WriteLine("\n=== 문제 2 ===");
+            Console.WriteLine($"처치한 몬스터: {monstersKilled}마리");
+            Console.WriteLine($"획득 경험치: {expPerMonster * monstersKilled}");
+            Console.WriteLine($"처치한 몬스터: {expForLevelUp - expPerMonster * monstersKilled}");
+
+
+            // 문제 3
+            int totalGold = 1234;
+            int partyMembers = 5;
+
+            Console.WriteLine("\n=== 문제 3 ===");
+            Console.WriteLine($"총 골드: {totalGold}");
+            Console.WriteLine($"파티원: {partyMembers}명");
+            Console.WriteLine($"1인당 골드: {totalGold / partyMembers}");
+            Console.WriteLine($"남은 골드: {totalGold % partyMembers}");
+
+
+            // 문제 4
+            int playerLevel = 35;
+            int requiredLevel = 30;
+            bool hasKey = true;
+            int currentHp2 = 60;
+            int maxHp2 = 100;
+
+            Console.WriteLine("\n=== 문제 4, 던전 입장 조건 ===");
+            Console.WriteLine($"레벨 조건 (30 이상): {playerLevel >= requiredLevel}");
+            Console.WriteLine($"열쇠 보유: {hasKey}");
+            Console.WriteLine($"체력 조건 (50% 이상): {currentHp2 >= (maxHp2 / 2)}");
+            Console.WriteLine($"입장 가능: {playerLevel >= requiredLevel && hasKey && currentHp2 >= (maxHp2 / 2)}");
+
+
+            // 문제 5
+            int originalPrice = 5000;
+            bool isVIP = true;
+            bool hasCoupon = true;
+
+            Console.WriteLine("\n=== 문제 5 ===");
+            Console.WriteLine($"원가: {originalPrice}골드");
+            Console.WriteLine($"VIP 할인 (20%): {(isVIP ? originalPrice -= (int) (originalPrice * 0.2) : originalPrice)}골드");
+            Console.WriteLine($"쿠폰 할인 (-500): {(hasCoupon ? originalPrice -= 500 : originalPrice)}골드");
         }
     }
 }
