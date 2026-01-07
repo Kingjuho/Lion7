@@ -15,6 +15,7 @@ namespace CsharpStudy
             /* 2025/12/31 C# Study #1 */
             /*************************/
 
+
             /*
             int posX = 0, posY = 50, posZ = 100;
             Console.WriteLine("X = {0}, Y = {1}, Z = {2}", posX, posY, posZ);
@@ -47,6 +48,7 @@ namespace CsharpStudy
             /***************************/
             /* 2026/01/05 C# Study #2 */
             /*************************/
+
 
             //const double Pi = 3.14159;
             //const int MaxScore = 100;
@@ -206,6 +208,7 @@ namespace CsharpStudy
             /***************************/
             /* 2026/01/06 C# Study #3 */
             /*************************/
+
 
             //Console.Write("이름을 입력하세요: ");
             //string userName = Console.ReadLine();
@@ -384,61 +387,383 @@ namespace CsharpStudy
 
 
             // 문제 1
-            int currentHp = 80;
-            int maxHp = 100;
+            //int currentHp = 80;
+            //int maxHp = 100;
 
-            Console.WriteLine("=== 문제 1 ===");
-            Console.WriteLine($"초기 체력: {currentHp}/{maxHp}");
-            Console.WriteLine($"데미지 -25: {currentHp -= 25}/{maxHp}");
-            Console.WriteLine($"회복 +30: {currentHp += 30}/{maxHp}");
-            Console.WriteLine($"독 데미지 -5: {currentHp -= 5}/{maxHp}");
+            //Console.WriteLine("=== 문제 1 ===");
+            //Console.WriteLine($"초기 체력: {currentHp}/{maxHp}");
+            //Console.WriteLine($"데미지 -25: {currentHp -= 25}/{maxHp}");
+            //Console.WriteLine($"회복 +30: {currentHp += 30}/{maxHp}");
+            //Console.WriteLine($"독 데미지 -5: {currentHp -= 5}/{maxHp}");
 
 
             // 문제 2
-            int expPerMonster = 150;
-            int monstersKilled = 3;
-            int expForLevelUp = 500;
+            //int expPerMonster = 150;
+            //int monstersKilled = 3;
+            //int expForLevelUp = 500;
 
-            Console.WriteLine("\n=== 문제 2 ===");
-            Console.WriteLine($"처치한 몬스터: {monstersKilled}마리");
-            Console.WriteLine($"획득 경험치: {expPerMonster * monstersKilled}");
-            Console.WriteLine($"처치한 몬스터: {expForLevelUp - expPerMonster * monstersKilled}");
+            //Console.WriteLine("\n=== 문제 2 ===");
+            //Console.WriteLine($"처치한 몬스터: {monstersKilled}마리");
+            //Console.WriteLine($"획득 경험치: {expPerMonster * monstersKilled}");
+            //Console.WriteLine($"처치한 몬스터: {expForLevelUp - expPerMonster * monstersKilled}");
 
 
             // 문제 3
-            int totalGold = 1234;
-            int partyMembers = 5;
+            //int totalGold = 1234;
+            //int partyMembers = 5;
 
-            Console.WriteLine("\n=== 문제 3 ===");
-            Console.WriteLine($"총 골드: {totalGold}");
-            Console.WriteLine($"파티원: {partyMembers}명");
-            Console.WriteLine($"1인당 골드: {totalGold / partyMembers}");
-            Console.WriteLine($"남은 골드: {totalGold % partyMembers}");
+            //Console.WriteLine("\n=== 문제 3 ===");
+            //Console.WriteLine($"총 골드: {totalGold}");
+            //Console.WriteLine($"파티원: {partyMembers}명");
+            //Console.WriteLine($"1인당 골드: {totalGold / partyMembers}");
+            //Console.WriteLine($"남은 골드: {totalGold % partyMembers}");
 
 
             // 문제 4
-            int playerLevel = 35;
-            int requiredLevel = 30;
-            bool hasKey = true;
-            int currentHp2 = 60;
-            int maxHp2 = 100;
+            //int playerLevel = 35;
+            //int requiredLevel = 30;
+            //bool hasKey = true;
+            //int currentHp2 = 60;
+            //int maxHp2 = 100;
 
-            Console.WriteLine("\n=== 문제 4, 던전 입장 조건 ===");
-            Console.WriteLine($"레벨 조건 (30 이상): {playerLevel >= requiredLevel}");
-            Console.WriteLine($"열쇠 보유: {hasKey}");
-            Console.WriteLine($"체력 조건 (50% 이상): {currentHp2 >= (maxHp2 / 2)}");
-            Console.WriteLine($"입장 가능: {playerLevel >= requiredLevel && hasKey && currentHp2 >= (maxHp2 / 2)}");
+            //Console.WriteLine("\n=== 문제 4, 던전 입장 조건 ===");
+            //Console.WriteLine($"레벨 조건 (30 이상): {playerLevel >= requiredLevel}");
+            //Console.WriteLine($"열쇠 보유: {hasKey}");
+            //Console.WriteLine($"체력 조건 (50% 이상): {currentHp2 >= (maxHp2 / 2)}");
+            //Console.WriteLine($"입장 가능: {playerLevel >= requiredLevel && hasKey && currentHp2 >= (maxHp2 / 2)}");
 
 
             // 문제 5
-            int originalPrice = 5000;
-            bool isVIP = true;
-            bool hasCoupon = true;
+            //int originalPrice = 5000;
+            //bool isVIP = true;
+            //bool hasCoupon = true;
 
-            Console.WriteLine("\n=== 문제 5 ===");
-            Console.WriteLine($"원가: {originalPrice}골드");
-            Console.WriteLine($"VIP 할인 (20%): {(isVIP ? originalPrice -= (int) (originalPrice * 0.2) : originalPrice)}골드");
-            Console.WriteLine($"쿠폰 할인 (-500): {(hasCoupon ? originalPrice -= 500 : originalPrice)}골드");
-        }
+            //Console.WriteLine("\n=== 문제 5 ===");
+            //Console.WriteLine($"원가: {originalPrice}골드");
+            //Console.WriteLine($"VIP 할인 (20%): {(isVIP ? originalPrice -= (int) (originalPrice * 0.2) : originalPrice)}골드");
+            //Console.WriteLine($"쿠폰 할인 (-500): {(hasCoupon ? originalPrice -= 500 : originalPrice)}골드");
+
+
+
+            /***************************/
+            /* 2026/01/07 C# Study #4 */
+            /*************************/
+
+
+            // 삼항 연산자
+            //int a = 10, b = 20;
+            //int max = (a > b) ? a : b;
+            //Console.WriteLine(max);
+            //Console.WriteLine(a > b);
+
+            //int score = 85;
+            //string result = (score >= 60) ? "합격" : "불합격";
+
+            //Console.WriteLine("=== 시험 결과 ===");
+            //Console.WriteLine($"점수: {score}");
+            //Console.WriteLine($"결과: {result}");
+
+            //int level = 45;
+            //string grade = (level > 50) ? "고급" : (level >= 30) ? "중급" : "초급";
+
+            //Console.WriteLine("=== 플레이어 등급 ===");
+            //Console.WriteLine($"레벨: {level}");
+            //Console.WriteLine($"등급: {grade}");
+
+
+            //int currentHp = 30;
+            //int maxHp = 100;
+
+            //Console.WriteLine("=== 헬스 상태 ===");
+            //Console.WriteLine((currentHp >= (maxHp * 0.7)) ? "안전" : (currentHp >= (maxHp * 0.3)) ? "주의" : "위험");
+
+
+            // 연산자 우선순위
+            // 1. 괄호
+            // 2. 단항 연산자(++, --, !, -)
+            // 3. 곱셈/나눗셈
+            // 4. 덧셈/뺄셈
+            // 5. 비교 연산자
+            // 6. 동등 비교(==, !=)
+            // 7. 논리 AND
+            // 8. 논리 OR
+            // 9. 대입 연산자(=, +=, -=)
+
+
+            //int baseDamage = 50;
+            //int bonusDamage = 20;
+            //double criticalMultiplier = 1.5;
+
+            //// 잘못된 계산
+            //double damage1 = baseDamage + bonusDamage * criticalMultiplier;
+            //// 올바른 계산
+            //double damage2 = (baseDamage + bonusDamage) * criticalMultiplier;
+
+            //Console.WriteLine("\n=== 크리티컬 데미지 계산 ===");
+            //Console.WriteLine($"기본 데미지: {baseDamage}");
+            //Console.WriteLine($"보너스 데미지: {bonusDamage}");
+            //Console.WriteLine($"크리티컬 배율: {criticalMultiplier}");
+            //Console.WriteLine($"잘못된 계산: {damage1}");  // 80.0
+            //Console.WriteLine($"올바른 계산: {damage2}");  // 105.0
+
+
+            // if else
+            //int score = 85;
+            //if (score >= 90)
+            //{
+            //    Console.WriteLine("A");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("90점 미만");
+            //}
+
+            //int number = 10;
+            //if (number > 15)
+            //{
+            //    Console.WriteLine("15보다 큽니다.");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("15보다 작거나 같습니다.");
+            //}
+
+            //int score = 75;
+            //if (score >= 90)
+            //{
+            //    Console.WriteLine("A");
+            //}
+            //else if (score >= 80)
+            //{
+            //    Console.WriteLine("B");
+            //}
+            //else if (score >= 70)
+            //{
+            //    Console.WriteLine("C");
+            //}
+            //else 
+            //{ 
+            //    Console.WriteLine("F"); 
+            //}
+
+
+            //int currentHp = 30;
+            //int maxHp = 100;
+
+            //Console.WriteLine($"현재 체력: {currentHp}/{maxHp}");
+
+            //if (currentHp <= 0)
+            //{
+            //    Console.WriteLine("게임 오버!\n부활 지점에서 다시 시작합니다.");
+            //}
+            //else
+            //{
+            //    if (currentHp <= (maxHp * 0.3)) Console.WriteLine("경고: 체력이 위험합니다!\n회복 아이템을 사용하세요!");
+            //    if (currentHp <= (maxHp / 2)) Console.WriteLine("체력이 50% 이하입니다.");
+            //}
+
+            //int enemyDistance = 5;
+            //int attackRange = 3;
+
+            //if (enemyDistance <= attackRange) Console.WriteLine("적이 사거리 안에 있습니다!\n공격 가능!");
+
+
+            //int playerGold = 500;
+            //int itemPrice = 250;
+            //string itemName = "강철 검";
+
+            //Console.WriteLine("=== 상점 ===");
+            //Console.WriteLine($"아이템: {itemName}");
+            //Console.WriteLine($"가격: {itemPrice}");
+            //Console.WriteLine($"소지금: {playerGold}");
+            //Console.WriteLine();
+
+            //if (playerGold >= itemPrice)
+            //{
+            //    playerGold -= itemPrice;
+            //    Console.WriteLine($"구매 성공!");
+            //    Console.WriteLine($"{itemName}을 획득했습니다.");
+            //    Console.WriteLine($"남은 소지금: {playerGold}");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"골드가 부족합니다.");
+            //    Console.WriteLine($"필요한 금액: {itemPrice - playerGold}");
+            //}
+            //Console.WriteLine();
+
+            //int playerLevel = 48;
+            //int requiredLevel = 50;
+
+            //Console.WriteLine("=== 던전 입장 ===");
+
+            //if (playerLevel >= requiredLevel)
+            //{
+            //    Console.WriteLine("던전에 입장합니다.");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("레벨이 부족합니다.");
+            //    Console.WriteLine($"현재 레벨: {playerLevel}");
+            //    Console.WriteLine($"필요 레벨: {requiredLevel}");
+            //}
+
+
+            //int score = 0;
+            //(string rank, string rankKorean, string reward) = ("", "", "");
+
+            //Console.WriteLine("=== 게임 랭크 시스템 ===");
+            //Console.Write("점수를 입력하세요: ");
+            //score = int.Parse(Console.ReadLine());
+            //Console.WriteLine($"점수: {score}");
+
+            //if (score >= 10000)
+            //{
+            //    rank = "SSS";
+            //    rankKorean = "레전드";
+            //    reward = "전설 아이템 + 골드 10000";
+            //}
+            //else if (score >= 8000)
+            //{
+            //    rank = "SS";
+            //    rankKorean = "마스터";
+            //    reward = "영웅 아이템 + 골드 5000";
+            //}
+            //else if (score >= 6000)
+            //{
+            //    rank = "S";
+            //    rankKorean = "다이아";
+            //    reward = "희귀 아이템 + 골드 3000";
+            //}
+            //else if (score >= 4000)
+            //{
+            //    rank = "A";
+            //    rankKorean = "플래티넘";
+            //    reward = "고급 아이템 + 골드 1500";
+            //}
+            //else
+            //{
+            //    rank = "B";
+            //    rankKorean = "골드";
+            //    reward = "일반 아이템 + 골드 500";
+            //}
+
+            //Console.WriteLine($"등급: {rank} ({rankKorean})");
+            //Console.WriteLine($"보상: {reward}");
+
+
+            // switch case
+            //int day = 3;
+
+            //switch (day)
+            //{
+            //    case 1:
+            //        Console.WriteLine("월요일");
+            //        break;
+            //    case 2:
+            //        Console.WriteLine("화요일");
+            //        break;
+            //    case 3:
+            //        Console.WriteLine("수요일");
+            //        break;
+            //    default:
+            //        Console.WriteLine("유효하지 않은 요일");
+            //        break;
+            //}
+
+
+            //Console.WriteLine("=== 캐릭터 생성 ===");
+            //Console.Write("직업을 선택하십시오(1: 전사, 2: 마법사, 3: 궁수, 4: 도적): ");
+            //int playerClass = int.Parse(Console.ReadLine());
+
+            //switch (playerClass)
+            //{
+            //    case 1:
+            //        Console.WriteLine("직업: 전사");
+            //        Console.WriteLine("특성: 강력한 물리 공격");
+            //        Console.WriteLine("주무기: 검, 창");
+            //        Console.WriteLine("스탯: 체력 + 100, 근력 + 50");
+            //        break;
+            //    case 2:
+            //        Console.WriteLine("직업: 마법사");
+            //        Console.WriteLine("특성: 강력한 마법 공격");
+            //        Console.WriteLine("주무기: 지팡이, 마법서");
+            //        Console.WriteLine("스탯: 마나 + 100, 마력 + 50");
+            //        break;
+            //    case 3:
+            //        Console.WriteLine("직업: 궁수");
+            //        Console.WriteLine("특성: 빠른 원거리 공격");
+            //        Console.WriteLine("주무기: 활");
+            //        Console.WriteLine("스탯: 크리티컬 + 100, 민첩 + 50");
+            //        break;
+            //    case 4:
+            //        Console.WriteLine("직업: 도적");
+            //        Console.WriteLine("특성: 빠른 물리 공격");
+            //        Console.WriteLine("주무기: 단검");
+            //        Console.WriteLine("스탯: 민첩 + 100, 크리티컬 + 50");
+            //        break;
+            //    default:
+            //        Console.WriteLine("유효하지 않은 접근입니다.");
+            //        break;
+            //}
+
+
+            // for
+            //int i = 1;
+
+            //Console.WriteLine("=== 몬스터 웨이브 시작 ===");
+            //for (i = 1; i <= 5; i++)
+            //{
+            //    Console.WriteLine($"고블린 #{i} 생성!");
+            //}
+
+            //Console.WriteLine($"총 {i - 1}마리 생성 완료!");
+
+            //Console.WriteLine("=== 게임 시작 카운트다운 ===");
+            //for (int i = 5; i > 0; i--)
+            //{
+            //    Console.WriteLine($"{i}..");
+            //}
+            //Console.WriteLine("게임 시작!");
+
+
+            // random function
+            //Random random = new Random();
+            //int number1 = random.Next(5);           // 0 ~ 4
+            //int number2 = random.Next(1, 7);        // 1 ~ 6 (Range 함수의 사용법과 동일)
+            //double number3 = random.NextDouble();   // 0.0 ~ 1.0
+
+
+            string sword = "무한의 대검";
+
+            Random rand = new Random();
+            int random = 0;
+
+            Console.WriteLine("당신은 20번 뽑기가 가능합니다. 지금 실행합니다.");
+            for (int i = 0; i < 20; i++)
+            {
+                random = rand.Next(1, 101);
+
+                if (random >= 1 && random <= 10)
+                {
+                    sword = "무한의 대검";
+                }
+                else if (random >= 11 && random <= 30)
+                {
+                    sword = "카타나";
+                }
+                else if (random >= 31 && random <= 60)
+                {
+                    sword = "엑스칼리버";
+                }
+                else if (random >= 61 && random <= 100)
+                {
+                    sword = "정기점검";
+                }
+
+                Console.WriteLine($"{random} {sword}");
+                Thread.Sleep(500);
+            }
+        } 
     }
 }
