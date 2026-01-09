@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -734,36 +735,304 @@ namespace CsharpStudy
             //double number3 = random.NextDouble();   // 0.0 ~ 1.0
 
 
-            string sword = "무한의 대검";
+            //string sword = "무한의 대검";
 
-            Random rand = new Random();
-            int random = 0;
+            //Random rand = new Random();
+            //int random = 0;
 
-            Console.WriteLine("당신은 20번 뽑기가 가능합니다. 지금 실행합니다.");
-            for (int i = 0; i < 20; i++)
-            {
-                random = rand.Next(1, 101);
+            //Console.WriteLine("당신은 20번 뽑기가 가능합니다. 지금 실행합니다.");
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    random = rand.Next(1, 101);
 
-                if (random >= 1 && random <= 10)
-                {
-                    sword = "무한의 대검";
-                }
-                else if (random >= 11 && random <= 30)
-                {
-                    sword = "카타나";
-                }
-                else if (random >= 31 && random <= 60)
-                {
-                    sword = "엑스칼리버";
-                }
-                else if (random >= 61 && random <= 100)
-                {
-                    sword = "정기점검";
-                }
+            //    if (random >= 1 && random <= 10)
+            //    {
+            //        sword = "무한의 대검";
+            //    }
+            //    else if (random >= 11 && random <= 30)
+            //    {
+            //        sword = "카타나";
+            //    }
+            //    else if (random >= 31 && random <= 60)
+            //    {
+            //        sword = "엑스칼리버";
+            //    }
+            //    else if (random >= 61 && random <= 100)
+            //    {
+            //        sword = "정기점검";
+            //    }
 
-                Console.WriteLine($"{random} {sword}");
-                Thread.Sleep(500);
-            }
-        } 
+            //    Console.WriteLine($"{random} {sword}");
+            //    Thread.Sleep(500);
+            //}
+
+
+            //Console.Write("온도: ");
+            //int temperature = int.Parse(Console.ReadLine());
+
+            //if (temperature >= 30) Console.WriteLine("매우 더워요! 반팔과 반바지를 입으세요.");
+            //else if (temperature >= 20) Console.WriteLine("적당해요! 긴팔 티셔츠를 입으세요.");
+            //else if (temperature >= 10) Console.WriteLine("쌀쌀해요! 가디건이나 자켓을 챙기세요.");
+            //else if (temperature >= 0) Console.WriteLine("추워요! 코트를 입으세요.");
+            //else Console.WriteLine("매우 추워요! 패딩과 목도리가 필요해요.");
+
+
+
+            /***************************/
+            /* 2026/01/08 C# Study #5 */
+            /*************************/
+
+            // while
+            //int i = 1;
+            //int sum = 0;
+            //while (i <= 5)
+            //{
+            //    sum += i;
+            //    i += 1;
+            //}
+            //Console.WriteLine($"1부터 5까지의 합: {sum}");
+
+
+            //int coins = 0;
+            //int target = 50;
+            //int day = 0;
+
+            //while (coins < target)
+            //{
+            //    day += 1;
+            //    coins += 10;
+            //    Console.WriteLine($"{day}일차: 코인 {coins}개");
+            //}
+
+            //Console.WriteLine($"목표 달성! {day}일 걸렸습니다.");
+
+
+            // do while
+            //int x = 5;
+            //do
+            //{
+            //    Console.WriteLine("이 문장은 최소 한 번은 실행됩니다.");
+            //    x--;
+            //}
+            //while (x > 0);
+
+
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    if (i % 2 == 0) continue;
+            //    Console.WriteLine(i);
+            //}
+
+
+            // 대장장이 키우기
+
+            //Console.WriteLine(" 대장장이 키우기 ");
+
+            //Random rand = new Random();
+
+            //int pmoney = 100;   // 소지금
+            //int input, rnd;     // 입력값, 랜덤값
+            //int[] equipment = new int[6];
+
+            //Thread.Sleep(500);
+
+            //while (true)
+            //{
+            //    Console.Clear();
+            //    Console.WriteLine($"1. 나무 캐기");
+            //    Console.WriteLine($"2. 장비 뽑기");
+            //    Console.WriteLine($"3. 소지금/장비 확인");
+            //    Console.WriteLine($"4. 생을 마감하기");
+            //    Console.Write("입력: ");
+            //    input = int.Parse(Console.ReadLine());
+
+            //    switch (input)
+            //    {
+            //        case 1:
+            //            while(true)
+            //            {
+            //                Console.WriteLine("엔터 키를 누르면 나무를 캡니다. x를 입력하고 엔터를 누르면 뒤로 돌아갑니다.");
+
+            //                string str = Console.ReadLine();
+            //                if (str == "X" || str == "x")
+            //                {
+            //                    break;
+            //                }
+
+            //                pmoney += 100;
+            //                Console.WriteLine($"나무를 캐고 팔아 100G를 획득하였습니다. 소지금: {pmoney}G");
+            //            }
+            //            break;
+            //        case 2:
+            //            if (pmoney < 1000)
+            //            {
+            //                Console.WriteLine("돈이 부족합니다. 최소 1000G가 필요합니다.");
+            //                Thread.Sleep(2000);
+            //                break;
+            //            }
+
+            //            pmoney -= 1000;
+
+            //            for(int i = 1; i <= 20; i++)
+            //            {
+            //                rnd = rand.Next(1, 101);
+            //                if (rnd == 1)
+            //                {
+            //                    Console.WriteLine($"{i}회차: SSS 장비 획득!");
+            //                    equipment[0] += 1;
+            //                }
+            //                else if (rnd >= 2 && rnd <= 6)
+            //                {
+            //                    Console.WriteLine($"{i}회차: SS 장비 획득!");
+            //                    equipment[1] += 1;
+            //                }
+            //                else if (rnd >= 7 && rnd <= 17)
+            //                {
+            //                    Console.WriteLine($"{i}회차: S 장비 획득!");
+            //                    equipment[2] += 1;
+            //                }
+            //                else if (rnd >= 18 && rnd <= 38)
+            //                {
+            //                    Console.WriteLine($"{i}회차: A 장비 획득!");
+            //                    equipment[3] += 1;
+            //                }
+            //                else if (rnd >= 39 && rnd <= 69)
+            //                {
+            //                    Console.WriteLine($"{i}회차: B 장비 획득!");
+            //                    equipment[4] += 1;
+            //                }
+            //                else
+            //                {
+            //                    Console.WriteLine($"{i}회차: C 장비 획득!");
+            //                    equipment[5] += 1;
+            //                }
+
+            //                Thread.Sleep(500);
+            //            }
+            //            break;
+            //        case 3:
+            //            Console.WriteLine($"소지금: {pmoney}G");
+            //            Console.WriteLine($"SSS: {equipment[0]}");
+            //            Console.WriteLine($"SS: {equipment[1]}");
+            //            Console.WriteLine($"S: {equipment[2]}");
+            //            Console.WriteLine($"A: {equipment[3]}");
+            //            Console.WriteLine($"B: {equipment[4]}");
+            //            Console.WriteLine($"C: {equipment[5]}");
+            //            Thread.Sleep(5000);
+            //            break;
+            //        case 4:
+            //            Console.WriteLine("당신은 만족하고 생을 마감했습니다.");
+            //            return;
+            //    }
+            //}
+
+
+            // 별 찍기
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    for (int j = 0; j <= i; j++)
+            //    {
+            //        Console.Write("*");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+
+            // 곱셈
+            //for (int i = 1; i <= 3; i++)
+            //{
+            //    for (int j = 1; j <= 3; j++)
+            //    {
+            //        Console.Write($"{i} x {j} = {i * j}  ");
+            //    }
+            //    Console.WriteLine();
+            //}
+
+
+            // 미니 게임 맵
+            //int house = 0;
+            //int target = 6;
+
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    for (int j = 0; j < 4; j++)
+            //    {
+            //        if (i + j == house)
+            //        {
+            //            Console.Write("집 ");
+            //        }
+            //        else if (i + j == target)
+            //        {
+            //            Console.Write("과 ");
+            //        }
+            //        else
+            //        {
+            //            Console.Write("땅 ");
+            //        }
+            //    }
+            //    Console.WriteLine();
+            //}
+
+
+            /*** 미니 게임 ***/
+
+            // 상수
+            //const int X_MAX = 80;
+            //const int Y_MAX = 25;
+            //const int X_TARGET = 50;
+            //const int Y_TARGET = 20;
+
+            //// 콘솔 설정
+            //Console.SetWindowSize(X_MAX, Y_MAX);    // 창 크기 설정
+            //Console.SetBufferSize(X_MAX, Y_MAX);    // 버퍼 크기 설정 (스크롤 방지)
+            //Console.CursorVisible = false;          // 커서 숨기기
+            
+            //ConsoleKeyInfo keyInfo;
+
+            //int x = 10, y = 10;
+
+            //while (true)
+            //{
+            //    // 초기화
+            //    Console.Clear();
+
+            //    // 플레이어 및 목표 위치 표시
+            //    Console.SetCursorPosition(x, y);
+            //    Console.Write("X");
+
+            //    Console.SetCursorPosition(X_TARGET, Y_TARGET);
+            //    Console.WriteLine("O");
+
+            //    // 목표 도달 시 메시지 출력 후 종료
+            //    if (x == X_TARGET && y == Y_TARGET)
+            //    {
+            //        Console.Clear();
+            //        Console.Write("목표에 도달했습니다!");
+            //        break;
+            //    }
+
+            //    keyInfo = Console.ReadKey(true);
+            //    // 방향키 입력에 따른 좌표 변경
+            //    switch (keyInfo.Key)
+            //    {
+            //        case ConsoleKey.UpArrow:
+            //            if (y > 0) y--;
+            //            break;
+            //        case ConsoleKey.DownArrow:
+            //            if (y < Y_MAX - 1) y++;
+            //            break;
+            //        case ConsoleKey.LeftArrow:
+            //            if (x > 0) x--;
+            //            break;
+            //        case ConsoleKey.RightArrow:
+            //            if (x < X_MAX - 2) x++;
+            //            break;
+            //        case ConsoleKey.Spacebar:
+            //            break;
+            //        case ConsoleKey.Escape:
+            //            return; // 프로그램 종료
+            //    }
+            //}
+        }
     }
 }
