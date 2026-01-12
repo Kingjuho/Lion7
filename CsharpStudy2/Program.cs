@@ -9,10 +9,12 @@ namespace CsharpStudy2
 {
     internal class Program
     {
+        /*
         [DllImport("msvcrt.dll")]
 
         // getch() 함수: 콘솔에서 키 입력을 받는 함수 (비표준, Windows 전용)
         public static extern int _getch();
+        */
 
         static void Main(string[] args)
         {
@@ -511,107 +513,107 @@ namespace CsharpStudy2
             #region 간단한 슈팅게임 구현
 
             // 콘솔 세팅
-            Console.SetWindowSize(80, 25);
-            Console.SetBufferSize(80, 25);
-            Console.CursorVisible = false;
+            //Console.SetWindowSize(80, 25);
+            //Console.SetBufferSize(80, 25);
+            //Console.CursorVisible = false;
 
-            string[] player = new string[]      // 플레이어 모양
-            {
-                  "->"
-                , ">>>"
-                , "->"
-            };
-            int playerX = 0, playerY = 12;      // 플레이어 좌표
-            int pressKey = -1;                  // 플레이어 키 입력
-            
-            int[, ] bullet = new int[10, 2] ;   // 총알 좌표 (최대 10발)
-            for (int i = 0; i < bullet.GetLength(0); i++)
-            {
-                bullet[i, 0] = -1;  // X 좌표 초기화
-                bullet[i, 1] = -1;  // Y 좌표 초기화
-            }
+            //string[] player = new string[]      // 플레이어 모양
+            //{
+            //      "->"
+            //    , ">>>"
+            //    , "->"
+            //};
+            //int playerX = 0, playerY = 12;      // 플레이어 좌표
+            //int pressKey = -1;                  // 플레이어 키 입력
 
-            // Sleep(1000) 대체 코드 (예: 1초 대기, 쿨타임 계산 등)
-            int dwTime = Environment.TickCount;
-            while (true)
-            {
-                if (dwTime + 1 < Environment.TickCount)
-                {
-                    // 현재 시간 세팅
-                    dwTime = Environment.TickCount;
-                    Console.Clear();
+            //int[, ] bullet = new int[10, 2] ;   // 총알 좌표 (최대 10발)
+            //for (int i = 0; i < bullet.GetLength(0); i++)
+            //{
+            //    bullet[i, 0] = -1;  // X 좌표 초기화
+            //    bullet[i, 1] = -1;  // Y 좌표 초기화
+            //}
 
-                    // 키 입력
-                    if (Console.KeyAvailable)
-                    {   
-                        // 키 입력 초기화
-                        pressKey = _getch();
-                        if (pressKey == 224) pressKey = _getch();
+            //// Sleep(1000) 대체 코드 (예: 1초 대기, 쿨타임 계산 등)
+            //int dwTime = Environment.TickCount;
+            //while (true)
+            //{
+            //    if (dwTime + 1 < Environment.TickCount)
+            //    {
+            //        // 현재 시간 세팅
+            //        dwTime = Environment.TickCount;
+            //        Console.Clear();
 
-                        switch (pressKey)
-                        {
-                            case 72: // 위쪽
-                                if (playerY > 0)
-                                    playerY--;
-                                break;
-                            case 75: // 왼쪽
-                                playerX--;
-                                if (playerX < 0)
-                                    playerX = 0;
-                                break;
-                            case 77: // 오른쪽
-                                playerX++;
-                                if (playerX > 75)
-                                    playerX = 75;
-                                break;
-                            case 80: // 아랫쪽
-                                playerY++;
-                                if (playerY > 21)
-                                    playerY = 21;
-                                break;
-                            case 32: // 스페이스
-                                for (int i = 0; i < bullet.GetLength(0); i++)
-                                {
-                                    if (bullet[i, 0] == -1 && bullet[i, 1] == -1)
-                                    {
-                                        bullet[i, 0] = playerX + 3;
-                                        bullet[i, 1] = playerY + 1;
-                                        break;
-                                    }
-                                }
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        pressKey = -1;
-                    }
+            //        // 키 입력
+            //        if (Console.KeyAvailable)
+            //        {   
+            //            // 키 입력 초기화
+            //            pressKey = _getch();
+            //            if (pressKey == 224) pressKey = _getch();
 
-                    // 플레이어 출력
-                    for (int i = 0; i < player.Length; i++)
-                    {
-                        Console.SetCursorPosition(playerX, playerY + i);
-                        Console.Write(player[i]);
-                    }
+            //            switch (pressKey)
+            //            {
+            //                case 72: // 위쪽
+            //                    if (playerY > 0)
+            //                        playerY--;
+            //                    break;
+            //                case 75: // 왼쪽
+            //                    playerX--;
+            //                    if (playerX < 0)
+            //                        playerX = 0;
+            //                    break;
+            //                case 77: // 오른쪽
+            //                    playerX++;
+            //                    if (playerX > 75)
+            //                        playerX = 75;
+            //                    break;
+            //                case 80: // 아랫쪽
+            //                    playerY++;
+            //                    if (playerY > 21)
+            //                        playerY = 21;
+            //                    break;
+            //                case 32: // 스페이스
+            //                    for (int i = 0; i < bullet.GetLength(0); i++)
+            //                    {
+            //                        if (bullet[i, 0] == -1 && bullet[i, 1] == -1)
+            //                        {
+            //                            bullet[i, 0] = playerX + 3;
+            //                            bullet[i, 1] = playerY + 1;
+            //                            break;
+            //                        }
+            //                    }
+            //                    break;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            pressKey = -1;
+            //        }
 
-                    // 총알 출력
-                    for (int i = 0; i < bullet.GetLength(0); i++)
-                    {
-                        if (bullet[i, 0] >= 0 && bullet[i, 1] >= 0)
-                        {
-                            Console.SetCursorPosition(bullet[i, 0], bullet[i, 1]);
-                            Console.Write("-");
-                            bullet[i, 0]++; // 총알 이동
-                            // 화면 밖으로 나가면 초기화
-                            if (bullet[i, 0] > 79)
-                            {
-                                bullet[i, 0] = -1;
-                                bullet[i, 1] = -1;
-                            }
-                        }
-                    }
-                }
-            }
+            //        // 플레이어 출력
+            //        for (int i = 0; i < player.Length; i++)
+            //        {
+            //            Console.SetCursorPosition(playerX, playerY + i);
+            //            Console.Write(player[i]);
+            //        }
+
+            //        // 총알 출력
+            //        for (int i = 0; i < bullet.GetLength(0); i++)
+            //        {
+            //            if (bullet[i, 0] >= 0 && bullet[i, 1] >= 0)
+            //            {
+            //                Console.SetCursorPosition(bullet[i, 0], bullet[i, 1]);
+            //                Console.Write("-");
+            //                bullet[i, 0]++; // 총알 이동
+            //                // 화면 밖으로 나가면 초기화
+            //                if (bullet[i, 0] > 79)
+            //                {
+            //                    bullet[i, 0] = -1;
+            //                    bullet[i, 1] = -1;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
             #endregion
 
@@ -620,6 +622,461 @@ namespace CsharpStudy2
             /**********************************************************
               * 2026/01/12                                            *
               **********************************************************/
+
+            #region 함수(Function/Method)
+
+            /*
+             * 함수(Function/Method)
+             * 
+             * - 특정 작업을 수행하는 코드 블록, 필요할 때마다 호출 가능
+             * 
+             * 장점
+             * 1. 코드 재사용성 증가
+             * 2. 코드 가독성 향상
+             * 3. 유지보수 용이
+             * */
+
+            //// 선언
+            //void SayHello()
+            //{
+            //    Console.WriteLine("안녕하세요, 용사님!");
+            //    Console.WriteLine("모험을 시작합니다.");
+            //}
+
+            //// 호출
+            //Console.WriteLine("SayHello 함수를 실행합니다.");
+            //SayHello();
+
+            /*
+             * ***함수 설계 원칙***
+             * 
+             * 1. 단일 책임 원칙(SRP): 하나의 함수는 하나의 작업만 수행
+             * 2. 명확한 이름 짓기: 함수 이름은 기능을 명확히 나타내야 함
+             * 3. 적절한 크기: 함수는 너무 길지 않고, 한 눈에 이해할 수 있을 정도로 간결해야 함
+             * 4. 매개변수 최소화: 필요한 매개변수만 사용, 너무 많으면 구조체나 클래스로 묶기
+             * 5. 재사용성 고려: 다른 곳에서도 사용할 수 있도록 일반화
+             * 6. 명확한 반환값: 함수가 값을 반환할 경우, 반환값의 의미가 명확해야 함
+             * */
+
+            #endregion
+
+            #region 예제 1: 매개변수와 반환값이 없는 함수
+
+            //void ShowGameStart()
+            //{
+            //    Console.WriteLine("╔═══════════════════════════════════╗");
+            //    Console.WriteLine("║ ⚔ RPG 게임 시작 ⚔ ║");
+            //    Console.WriteLine("╚═══════════════════════════════════╝");
+            //}
+
+            //void PrintSeparator()
+            //{
+            //    Console.WriteLine("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            //}
+
+            //ShowGameStart();
+            //PrintSeparator();
+
+            #endregion
+
+            #region 예제 2: 매개변수가 있는 함수
+
+            //void Attack(int att, int def)
+            //{
+            //    Console.WriteLine($"플레이어가 {att}의 데미지로 공격했습니다!");
+            //    Console.WriteLine($"방어력: {def}");
+            //}
+
+            //Attack(100, 20); // 함수 호출 시 매개변수 전달
+
+            #endregion
+
+            #region 예제 3: 함수로 플레이어 정보 출력
+
+            //void PrintPlayerInfo(string name, int att, int def, int dex, int luck)
+            //{
+            //    Console.WriteLine($"이름: {name}");
+            //    Console.WriteLine($"공격력: {att}");
+            //    Console.WriteLine($"방어력: {def}");
+            //    Console.WriteLine($"민첩: {dex}");
+            //    Console.WriteLine($"운: {luck}");
+            //}
+
+            //PrintPlayerInfo("홍길동", 200, 100, 50, 100);
+
+            #endregion
+
+            #region 예제 4: 매개변수가 있는 함수 예제 2
+
+            //void GreetPlayer(string playerName)
+            //{
+            //    Console.WriteLine($"환영합니다, {playerName}님!");
+            //}
+
+            //void ShowPlayerInfo(string job, int level)
+            //{
+            //    Console.WriteLine($"직업: {job}");
+            //    Console.WriteLine($"레벨: {level}");
+            //}
+
+            //void ShowDamage(string attacker, string defender, int damage)
+            //{
+            //    Console.WriteLine($"{attacker}가 {defender}에게 {damage}의 데미지를 입혔습니다!");
+            //}
+
+            //void DrawHealthBar(int current, int max, int barLength)
+            //{
+            //    float ratio = (float)current / (float)max;
+            //    int filledLength = (int)(barLength * ratio);
+            //    string bar = new string('■', filledLength) + new string('□', barLength - filledLength);
+            //    Console.WriteLine($"체력: [{bar}] {current}/{max}");
+            //}
+
+            //GreetPlayer("홍길동");
+            //ShowPlayerInfo("전사", 15);
+            //DrawHealthBar(75, 100, 20);
+            //DrawHealthBar(30, 100, 20);
+            //DrawHealthBar(100, 100, 20);
+            //ShowDamage("홍길동", "슬라임", 25);
+
+            #endregion
+
+            #region 예제 5: 반환값이 있는 함수
+
+            //int GetNumber()
+            //{
+            //    return 42;  // 정수형 반환
+            //}
+
+            //string ConnectMessage(string name)
+            //{
+            //    return $"{name}님이 접속하였습니다."; // 문자열 반환
+            //}
+
+            //Console.WriteLine($"반환된 숫자: {GetNumber()}"); // 함수 호출 및 반환값 출력
+            //Console.WriteLine(ConnectMessage("홍길동")); // 함수 호출 및 반환값 출력
+
+            #endregion
+
+            #region 예제 6: 디폴트 매개변수
+
+            //void CastFireBall(string target, int damage = 100, int cost = 30)
+            //{
+            //    Console.WriteLine($"{target}에게 {damage}의 화염구를 시전했습니다! {cost}의 마나를 소모했습니다.");
+            //}
+
+            //CastFireBall("오크족");                    // damage와 cost는 기본값 사용
+            //CastFireBall("고블린", 150);               // cost는 기본값 사용
+            //CastFireBall("드래곤", 300, 80);           // 모든 매개변수 직접 지정
+            //CastFireBall("드래곤", cost:80);           // 위치 지정 매개변수 사용
+
+            #endregion
+
+            #region 예제 7: 디폴트 매개변수를 이용한 간단한 게임 구현
+
+            //void usePotion(string itemName, int targetDamage, bool isHeal = true)
+            //{
+            //    Console.WriteLine($"{itemName} 사용!");
+            //    Console.WriteLine(isHeal ? $"회복량: {targetDamage} HP" : $"데미지: {targetDamage} HP");
+            //}
+
+            //void summonMonster(string monsterName, int level, int number = 1)
+            //{
+            //    Console.WriteLine($"{monsterName} 소환!");
+            //    Console.WriteLine($"레벨: {level}");
+            //    Console.WriteLine($"수량: {number}마리");
+            //}
+
+            //Console.WriteLine("=== 아이템 사용 ===");
+            //usePotion("회복 포션", 50);
+            //usePotion("고급 회복 포션", 100);
+
+            //Console.WriteLine("\n=== 소환 마법 ===");
+            //summonMonster("슬라임", 1);
+            //summonMonster("고블린", 5);
+            //summonMonster("드래곤", 50, 3);
+
+            #endregion
+
+            #region 예제 8: 재귀 함수
+
+            //// 1부터 n까지의 합을 계산하는 재귀 함수
+            //int SumUpToN(int n)
+            //{
+            //    if (n <= 0) return 0;
+            //    else if (n == 1) return 1;
+            //    else if (n == 2) return 3;
+            //    else return n + SumUpToN(n - 1);
+            //}
+
+            //// 동일한 기능을 반복문으로 구현한 함수
+            //int SumUpToN_Loop(int n)
+            //{
+            //    int sum = 0;
+            //    for (int i = 1; i <= n; i++)
+            //    {
+            //        sum += i;
+            //    }
+            //    return sum;
+            //}
+
+            //Console.WriteLine("=== 재귀 ===");
+            //Console.WriteLine(SumUpToN(5));
+            //Console.WriteLine(SumUpToN(6));
+            //Console.WriteLine(SumUpToN(10));
+
+            //Console.WriteLine("\n=== 반복문 ===");
+            //Console.WriteLine(SumUpToN_Loop(5));
+            //Console.WriteLine(SumUpToN_Loop(6));
+            //Console.WriteLine(SumUpToN_Loop(10));
+
+            /*
+             * 중요
+             * 1. 재귀 함수는 반드시 종료 조건이 필요
+             * 2. 종료 조건이 없으면 무한 호출로 인해 스택 오버플로우 발생
+             * 3. 재귀 함수는 반복문으로도 구현 가능
+             * */
+
+            #endregion
+
+
+            #region 오버로딩(Overloading)
+
+            /*
+             * 오버로딩(Overloading)
+             * 
+             * 1. 동일한 이름의 함수를 여러 개 정의하는 것
+             * 2. 매개변수의 타입, 개수, 순서가 다르면 가능
+             * 3. 반환값만 다른 경우는 불가능
+             * 
+             * 장점
+             * 1. 가독성, 유지보수성 향상
+             * 2. 관련 기능 그룹화
+             * */
+
+            // 현재 사용중인 visual studio 버전에서는 지역 함수의 오버로딩이 지원되지 않음
+            // main 함수 밖에서 선언해야 함
+            //void Attack()
+            //{
+            //    Console.WriteLine("기본 공격을 수행했습니다.");
+            //}
+
+            //void Attack(string target)
+            //{
+            //    Console.WriteLine($"{target}에게 기본 공격을 수행했습니다.");
+            //}
+
+            //void Attack(string target, int damage)
+            //{
+            //    Console.WriteLine($"{target}에게 {damage}의 기본 공격을 수행했습니다.");
+            //}
+
+            //Attack();
+            //Attack("슬라임");
+            //Attack("슬라임", 50);
+
+            #endregion
+
+            #region 예제 1: 오버로딩을 이용해 함수 고치기
+
+            //void Attack(string target, int damage, string skillName)
+            //{
+            //    Console.WriteLine($"✨ 스킬 발동: {skillName}");
+            //    Console.WriteLine($"⚔️ {target}에게 {damage} 데미지!");
+            //}
+
+            //void Attack(string target, int damage)
+            //{
+            //    Attack(target, damage, "기본 공격");
+            //}
+
+            //void Attack(int damage)
+            //{
+            //    Attack("적", damage, "기본 공격");
+            //}
+
+            #endregion
+
+
+            #region ref 키워드(Call by Reference)
+
+            /*
+             * ref 키워드
+             * 
+             * 1. 매개변수를 참조로 전달 = 원본 변수의 주소를 전달
+             * 2. 함수 내에서 매개변수 값을 변경하면 원본 변수에도 반영
+             * 3. 함수 호출 시 반드시 초기화된 변수를 전달해야 함
+             * */
+
+            //void Heal(ref int health, int amount)
+            //{
+            //    health += amount;
+            //    Console.WriteLine($"회복 후 체력: {health}");
+            //}
+
+            //void Heal(int health, int amount)
+            //{
+            //    health += amount;
+            //    Console.WriteLine($"회복 후 체력(복사본): {health}");
+            //}
+
+            //int playerHealth = 50;
+            //Console.WriteLine($"회복 전 체력: {playerHealth}");
+
+            //Heal(ref playerHealth, 30);                                 // ref 키워드 사용하여 참조로 전달
+            //Console.WriteLine($"원본 체력: {playerHealth}");            // 호출한 쪽에도 변경된 값 반영
+
+            //Heal(playerHealth, 30);                                     // ref 키워드 없이 값으로 전달
+            //Console.WriteLine($"원본 체력(복사본): {playerHealth}");    // 호출한 쪽에는 영향 없음
+
+            #endregion
+
+            #region 예제 1: Swap 함수
+
+            //// 기본 예제
+            //int x = 10, y = 20;
+            //void Swap(int a, int b)
+            //{
+            //    int temp2 = a;
+            //    a = b;
+            //    b = temp2;
+            //}
+            //Console.WriteLine($"변경 전: {x} {y}");
+            //Swap(x, y);
+            //Console.WriteLine($"변경 후: {x} {y}");    // Call by Value이므로 변경되지 않음
+
+
+            //// ref 키워드 사용 예제
+            //x = 10;
+            //y = 20;
+            //void Swap2(ref int a, ref int b)
+            //{
+            //    int temp2 = a;
+            //    a = b;
+            //    b = temp2;
+            //}
+            //Console.WriteLine($"변경 전: {x} {y}");
+            //Swap2(ref x, ref y);
+            //Console.WriteLine($"변경 후: {x} {y}");    // Call by Reference이므로 변경됨
+
+            #endregion
+
+
+            #region out 키워드
+
+            /*
+             * out 키워드
+             * 
+             * 1. 매개변수를 참조로 전달
+             * 2. 함수 내에서 반드시 값을 할당해야 함
+             * 3. 함수 호출 시 초기화되지 않은 변수를 전달 가능
+             * 4. 주로 여러 개의 값을 반환할 때 사용
+             * */
+
+            //void Attack(int a, int b, out int atk, out int def)
+            //{
+            //    atk = a + 10;  // 공격력 계산
+            //    def = b + 5;   // 방어력 계산
+            //    Console.WriteLine($"함수 내 계산된 공격력: {atk}, 방어력: {def}");
+            //}
+
+            //int playerAttack;
+            //int playerDefense;
+
+            //Attack(10, 20, out playerAttack, out playerDefense); // out 키워드 사용하여 참조로 전달
+            //Console.WriteLine($"함수 호출 후 공격력: {playerAttack}, 방어력: {playerDefense}");
+
+            #endregion
+
+
+            #region 2026/01/12 복습 문제
+
+            // 문제 1: 평균 계산 함수
+            float CalculateAverage(int[] numList)
+            {
+                int sum = 0;
+                for (int i = 0; i < numList.Length; i++)
+                {
+                    sum += numList[i];
+                }
+
+                return (float)sum / numList.Length;
+            }
+
+            // 문제 2: 등급 판별 함수
+            char CalculateGrade(float score)
+            {
+                if (score >= 90) return 'A';
+                else if (score >= 80) return 'B';
+                else if (score >= 70) return 'C';
+                else if (score >= 60) return 'D';
+                else return 'F';
+            }
+
+            // 문제 3: 소수 판별 함수
+            bool isPrime(int num)
+            {
+                if (num <= 1) return false;
+                for (int i = 2; i <= Math.Sqrt(num); i++)
+                {
+                    if (num % i == 0) return false;
+                }
+                return true;
+            }
+
+            // 문제 4: 경험치 시스템 함수
+            int addExp(ref int exp, int gain)
+            {
+                exp += gain;
+                int levelUpCount = 0;
+
+                while (exp >= 100)
+                {
+                    exp -= 100;
+                    levelUpCount += 1;
+                }
+
+                return levelUpCount;
+            }
+
+            // 문제 5: 아이템 강화 시스템
+            bool isUpgrade(int level)
+            {
+                Random rand = new Random();
+                int randInt = rand.Next(1, 101);
+
+                // 초기 확률: 1%, 1레벨이 오를 수록 1%씩 강화 확률 증가, 100레벨 이상일 시 무조건 성공
+                if (level - randInt >= 0) return true;
+                return false;
+            }
+
+
+
+            Console.WriteLine($"=== 문제 1 ===");
+            Console.WriteLine($"숫자: 15, 20, 25, 30, 35");
+            int[] numbers = { 15, 20, 25, 30, 35 };
+            Console.WriteLine($"평균: {CalculateAverage(numbers)}");
+
+            Console.WriteLine($"\n=== 문제 2 ===");
+            Console.WriteLine($"점수: 85.5");
+            Console.WriteLine($"등급: {CalculateGrade(85.5f)}");
+
+            Console.WriteLine($"\n=== 문제 3 ===");
+            Console.WriteLine($"숫자: 17");
+            Console.WriteLine($"소수 여부: {isPrime(17)}");
+
+            Console.WriteLine($"\n=== 문제 4 ===");
+            Console.WriteLine($"현재 경험치: 70");
+            Console.WriteLine($"획득 경험치: 150");
+            int userExp = 70;
+            Console.WriteLine($"레벨업 횟수: {addExp(ref userExp, 150)}");
+            Console.WriteLine($"현재 경험치: {userExp}");
+
+            Console.WriteLine($"\n=== 문제 5 ===");
+            Console.WriteLine($"현재 강화 레벨: 50(1~100)");
+            Console.WriteLine($"강화 성공 여부: {isUpgrade(50)}");
+
+            #endregion
         }
     }
 }
