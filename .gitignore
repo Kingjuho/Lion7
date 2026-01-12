@@ -1,4 +1,41 @@
-*.vsidx
+# 빌드 결과물
+[Bb]in/
+[Oo]bj/
+
+# 사용자 개인 설정
+.vs/
 *.user
 *.suo
-.vs/
+*.userosscache
+*.sln.docstates
+
+# 디버깅 및 빌드 캐시 파일
+*.pdb
+*.cache
+*_i.c
+*_p.c
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Mac OS
+.DS_Store
