@@ -22,31 +22,20 @@ namespace PokemonTextRPG.Map
                     if (x == playerX && y == playerY)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("🚶");
+                        Console.Write("＠");
                     }
                     else
                     {
-                        string tile = map.GetTileIcon(x, y);
-                        SetColorByTile(tile);
-                        Console.Write(tile);
+                        // 타일 정보 가져와서 출력
+                        Tile tile = map.GetTileInfo(x, y);
+                        Console.ForegroundColor = tile.Color;
+                        Console.Write(tile.Symbol);
                     }
                 }
                 Console.WriteLine();
             }
 
             Console.ResetColor();
-        }
-
-        // 타일에 따른 색상 설정
-        private static void SetColorByTile(string tile)
-        {
-                 if (tile == "🌳") Console.ForegroundColor = ConsoleColor.Green;
-            else if (tile == "☘️") Console.ForegroundColor = ConsoleColor.DarkGreen;
-            else if (tile == "💐") Console.ForegroundColor = ConsoleColor.Magenta;
-            else if (tile == "🚧") Console.ForegroundColor = ConsoleColor.DarkGray;
-            else if (tile == "📫") Console.ForegroundColor = ConsoleColor.Yellow;
-            else if (tile == "🏠") Console.ForegroundColor = ConsoleColor.DarkRed;
-            else Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

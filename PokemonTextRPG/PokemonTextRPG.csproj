@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character\Player.cs" />
     <Compile Include="Map\MapBase.cs" />
     <Compile Include="Map\MapRenderer.cs" />
-    <Compile Include="Map\PalletTown.cs" />
+    <Compile Include="Map\MapTile.cs" />
+    <Compile Include="Map\Locations\PalletTown.cs" />
+    <Compile Include="Map\TileRepository.cs" />
     <Compile Include="Monster\PokemonData.cs" />
     <Compile Include="Monster\PokemonFactory.cs" />
     <Compile Include="Monster\PokemonRepository.cs" />
@@ -55,5 +58,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

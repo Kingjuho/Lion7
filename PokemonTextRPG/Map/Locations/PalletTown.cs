@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PokemonTextRPG.Map
+﻿namespace PokemonTextRPG.Map.Locations
 {
     public class PalletTown : MapBase
     {
