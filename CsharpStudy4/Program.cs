@@ -1,13 +1,8 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Runtime.InteropServices;
+using System.Dynamic;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.Threading;
 
 namespace CsharpStudy4
 {
@@ -16,10 +11,14 @@ namespace CsharpStudy4
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            // Chapter_01.Program.Run();   // 클래스 간 통신
-            // Chapter_02.Program.Run();   // 상속
-            Chapter_03.Program.Run();   // 메소드 오버라이딩
-            // Shooting_Game.Program.Run();   // 슈팅 게임 예제
+            //Chapter_01.Program.Run();   // 클래스 간 통신
+            //Chapter_02.Program.Run();   // 상속
+            //Chapter_03.Program.Run();   // 메소드 오버라이딩
+            //Chapter_04.Program.Run();   // 추상 클래스
+            //Chapter_05.Program.Run();   // 예제 1
+            //Chapter_06.Program.Run();   // 인터페이스
+            //Shooting_Game.Program.Run();   // 슈팅 게임 예제
+            TextRPG.Program.Run();   // 텍스트 RPG 예제
         }
     }
 }
@@ -214,7 +213,6 @@ namespace Chapter_02
  * 
  * 장점
  * 1. 확장성이 우수함
- * 2. 
  * */
 
 // 메소드 오버라이딩(Method Overriding)
@@ -338,6 +336,269 @@ namespace Chapter_03
         }
     }
 }
+
+
+/*
+ * 추상 클래스(Abstract class)
+ * 
+ * - 직접 객체를 생성할 수 없고, 반드시 상속받아서 구현 및 완성해야 하는 클래스
+ * - 오버라이딩과 비슷하나, 좀 더 엄격한 강제성을 가지고 있음
+ * */
+
+// 추상 클래스(Abstract class)
+namespace Chapter_04
+{
+    // 부모 클래스(추상)
+    abstract class Character
+    {
+        // 일반 멤버
+        public int hp;
+
+        public void NormalMethod()
+        {
+            // 구현
+        }
+
+        // 추상 멤버, 구현 안하면 에러 발생
+        public abstract void Job();
+    }
+
+    // 자식 클래스
+    class Mage : Character
+    {
+        public override void Job()
+        {
+            Console.WriteLine("직업: 마법사");
+        }
+    }
+
+    class Warrior : Character
+    {
+        public override void Job()
+        {
+            Console.WriteLine("직업: 전사");
+        }
+    }
+
+    class Program
+    {
+        public static void Run()
+        {
+            // 사용 불가능
+            // Character character = new Character();
+
+            Mage mage = new Mage();
+            mage.Job();
+
+            Warrior warrior = new Warrior();
+            warrior.Job();
+
+            Console.WriteLine();
+
+            // 업캐스팅도 사용 가능
+            List<Character> characters = new List<Character>();
+            characters.Add(mage);
+            characters.Add(warrior);
+
+            foreach (var c in characters)
+            {
+                c.Job();
+            }
+        }
+    }
+}
+
+// 예제 1: 유닛 생성
+namespace Chapter_05
+{
+    abstract class Unit
+    {
+        public string Name { get; set; }
+        public string Job { get; set; }
+        public int Hp { get; set; }
+        public int MaxHp { get; set; }
+        public int Atk { get; set; }
+        public int Def { get; set; }
+        public int Spd { get; set; }
+
+        public Unit(string name)
+        {
+            Name = name;
+        }
+
+        public abstract void ShowStats();
+    }
+
+    class Warrior : Unit
+    {
+        public Warrior(string name) : base(name)
+        {
+            Job = "전사";
+            MaxHp = 200;
+            Hp = MaxHp;
+            Atk = 80;
+            Def = 50;
+            Spd = 5;
+        }
+
+        public override void ShowStats()
+        {
+            Console.WriteLine($"━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine($"[{Job}] {Name}");
+            Console.WriteLine($"HP: {Hp}/{MaxHp}");
+            Console.WriteLine($"공격력: {Atk}");
+            Console.WriteLine($"방어력: {Def}");
+            Console.WriteLine($"이동속도: {Spd}");
+            Console.WriteLine($"━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine();
+        }
+    }
+
+    class Mage : Unit
+    {
+        public int Mana { get; set; }
+
+        public Mage(string name) : base(name)
+        {
+            Job = "마법사";
+            MaxHp = 120;
+            Hp = MaxHp;
+            Atk = 150;
+            Mana = 100;
+            Spd = 4;
+        }
+
+        public override void ShowStats()
+        {
+            Console.WriteLine($"━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine($"[{Job}] {Name}");
+            Console.WriteLine($"HP: {Hp}/{MaxHp}");
+            Console.WriteLine($"마력: {Atk}");
+            Console.WriteLine($"마나: {Mana}");
+            Console.WriteLine($"이동속도: {Spd}");
+            Console.WriteLine($"━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine();
+        }
+    }
+
+    class Archer : Unit
+    {
+        public int Arrow { get; set; }
+
+        public Archer(string name) : base(name)
+        {
+            Job = "궁수";
+            MaxHp = 150;
+            Hp = MaxHp;
+            Atk = 100;
+            Arrow = 50;
+            Spd = 6;
+        }
+        public override void ShowStats()
+        {
+            Console.WriteLine($"━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine($"[{Job}] {Name}");
+            Console.WriteLine($"HP: {Hp}/{MaxHp}");
+            Console.WriteLine($"공격력: {Atk}");
+            Console.WriteLine($"화살: {Arrow}");
+            Console.WriteLine($"이동속도: {Spd}");
+            Console.WriteLine($"━━━━━━━━━━━━━━━━━━━━");
+            Console.WriteLine();
+        }
+    }
+
+    class Program
+    {
+        public static void Run()
+        {
+            List<Unit> units = new List<Unit>();
+
+            units.Add(new Warrior("홍길동"));
+            units.Add(new Mage("김마법"));
+            units.Add(new Archer("이궁수"));
+
+            foreach (Unit unit in units)
+            {
+                unit.ShowStats();
+            }
+        }
+    }
+}
+
+
+/*
+ * 인터페이스(Interface)
+ * 
+ * - 메소드 시그니처만 정의하는 것. 구현은 클래스가 담당
+ * - 예시: 인터페이스 => 공격 가능, 구현 => 전사는 검, 마법사는 마법
+ * */
+
+// 인터페이스(Interface)
+namespace Chapter_06
+{
+    interface IAttackable
+    {
+        void Attack(string target);
+        int GetAttackPower();
+    }
+
+    class Knight : IAttackable
+    {
+        public string Name { get; set; }
+        public int AttackPower { get; set; }
+
+        public Knight() 
+        {
+            Name = "검사";
+            AttackPower = 10;
+        }
+
+        public void Attack(string target)
+        {
+            Console.WriteLine($"검으로 {target}를 공격 했습니다.");
+        }
+
+        public int GetAttackPower()
+        {
+            return AttackPower;
+        }
+    }
+
+    class Mage : IAttackable
+    {
+        public string Name { get; set; }
+        public int AttackPower { get; set; }
+
+        public Mage()
+        {
+            Name = "마법사";
+            AttackPower = 15;
+        }
+
+        public void Attack(string target)
+        {
+            Console.WriteLine($"마법으로 {target}를 공격 했습니다.");
+        }
+
+        public int GetAttackPower()
+        {
+            return AttackPower;
+        }
+    }
+
+    class Program
+    {
+        public static void Run()
+        {
+            Knight knight = new Knight();
+            knight.Attack("오크");
+
+            Mage mage = new Mage();
+            mage.Attack("고블린");
+        }
+    }
+}
+
 
 // 슈팅게임
 namespace Shooting_Game
@@ -563,6 +824,254 @@ namespace Shooting_Game
         {
             GameManager game = new GameManager();
             game.Run();
+        }
+    }
+}
+
+// 간단한 텍스트 RPG
+namespace TextRPG
+{
+    // 스탯
+    public class INFO
+    {
+        public string Name { get; set; }
+        public int Attack { get; set; }
+        public int Hp { get; set; }
+    }
+
+    // 플레이어
+    public class Player
+    {
+        public INFO Info { get; set; } = new INFO();
+
+        public void TakeDamage(int attack) { Info.Hp -= attack; }
+
+        public void SetHp(int hp) { Info.Hp = hp; }
+
+        public void SelectJob()
+        {
+            Console.Write("직업을 선택하세요(1. 기사, 2. 마법사, 3. 도적): ");
+            switch(int.Parse(Console.ReadLine()))
+            {
+                case 1:
+                    Info.Name = "기사";
+                    Info.Hp = 100;
+                    Info.Attack = 10;
+                    break;
+                case 2:
+                    Info.Name = "마법사";
+                    Info.Hp = 90;
+                    Info.Attack = 15;
+                    break;
+                case 3:
+                    Info.Name = "도둑";
+                    Info.Hp = 85;
+                    Info.Attack = 13;
+                    break;
+            };
+        }
+
+        public void Render()
+        {
+            Console.WriteLine("==============================");
+            Console.WriteLine($"직업: {Info.Name}");
+            Console.WriteLine($"체력: {Info.Hp}\t공격력: {Info.Attack}");
+            Console.WriteLine("==============================");
+        }
+
+        public Player() { }
+    }
+
+    // 몬스터
+    public class Monster
+    {
+        public INFO Info { get; set; } = new INFO();
+
+        public void TakeDamage(int attack) { Info.Hp -= attack; }
+
+        public void Render()
+        {
+            Console.WriteLine("==============================");
+            Console.WriteLine($"이름: {Info.Name}");
+            Console.WriteLine($"체력: {Info.Hp}\t공격력: {Info.Attack}");
+            Console.WriteLine("==============================");
+            Console.WriteLine();
+        }
+
+        public Monster() { }
+
+        public Monster(string name, int hp, int attack) 
+        {
+            Info.Name = name;
+            Info.Hp = hp;
+            Info.Attack = attack;
+        }
+    }
+
+    // 필드(사냥터)
+    public class Field
+    {
+        Player _player;
+        Monster _monster;
+
+        public Player Player 
+        {
+            get => _player;
+            set => _player = value; 
+        }
+        public Monster Monster
+        {
+            get => _monster;
+            set => _monster = value;
+        }
+
+        // 과정 관리
+        public void Progress()
+        {
+            int input = 0;
+            while(true)
+            {
+                Console.Clear();
+                Player.Render();
+                DrawMap();
+                input = int.Parse(Console.ReadLine());
+
+                switch(input)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                        CreateMonster(input);
+                        Fight();
+                        break;
+                    case 4:
+                        return;
+                }
+            }
+        }
+
+        // 맵 선택창 출력
+        public void DrawMap()
+        {
+            Console.WriteLine("1. 초보 맵");
+            Console.WriteLine("2. 중수 맵");
+            Console.WriteLine("3. 고수 맵");
+            Console.WriteLine("4. 이전으로");
+            Console.WriteLine("=============");
+            Console.Write("맵을 선택하세요: ");
+        }
+
+        // input값에 맞는 몬스터 생산
+        public void CreateMonster(int input)
+        {
+            switch(input)
+            {
+                case 1:
+                    Monster = new Monster("초보 몹", 30, 3);
+                    break;
+                case 2:
+                    Monster = new Monster("중수 몹", 60, 6);
+                    break;
+                case 3:
+                    Monster = new Monster("고수 몹", 90, 9);
+                    break;
+            }
+        }
+
+        // 몬스터와 전투
+        public void Fight()
+        {
+            int input = 0;
+
+            while(true)
+            {
+                Console.Clear();
+                Player.Render();
+                Monster.Render();
+
+                Console.Write("1: 공격, 2: 도망 : ");
+                input = int.Parse(Console.ReadLine());
+
+                switch(input)
+                {
+                    case 1:
+                        // 몬스터 공격
+                        Player.TakeDamage(Monster.Info.Attack);
+                        // 플레이어 공격
+                        Monster.TakeDamage(Player.Info.Attack);
+                        break;
+                    case 2:
+                        return;
+                }
+
+                if(Monster.Info.Hp <= 0)
+                {
+                    Monster = null;
+                    break;
+                }
+                else if(Player.Info.Hp <= 0)
+                {
+                    Player.Info.Hp = 100;
+
+                    Console.Clear();
+                    Console.WriteLine("============");
+                    Console.WriteLine("=== 사망 ===");
+                    Console.WriteLine("============");
+                    Thread.Sleep(1000);
+                    break;
+                }
+            }
+        }
+    }
+
+    // 게임 매니저
+    public class GameManager
+    {
+        public Player player = null;
+        public Field field = null;
+
+        // 초기화
+        public void Initialize()
+        {
+            player = new Player();
+            field = new Field();
+            player.SelectJob();
+        }
+
+        // 과정 관리
+        public void Progress()
+        {
+            int input = 0;
+
+            while(true)
+            {
+                Console.Clear();
+                player.Render();
+                Console.Write("1: 사냥터, 2: 종료: ");
+                input = int.Parse(Console.ReadLine());
+
+                switch(input)
+                {
+                    case 1: // 사냥터
+                        field.Player = player;
+                        field.Progress();
+                        break;
+                    case 2: // 종료
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+        }
+    }
+
+    class Program
+    {
+        public static void Run()
+        {
+            GameManager gameMain = new GameManager();
+
+            gameMain.Initialize();
+            gameMain.Progress();
         }
     }
 }
