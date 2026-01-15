@@ -9,14 +9,14 @@ namespace PokemonTextRPG.Map
         private static readonly Dictionary<char, Tile> _tiles = new Dictionary<char, Tile>
         {
             // 키, 이모지, 색상, 이동 가능 여부
-            { 'T', new Tile("♣", ConsoleColor.Green,      false) }, // 나무
-            { 'G', new Tile("ww", ConsoleColor.DarkGreen,  true)  }, // 풀숲
-            { 'F', new Tile("**", ConsoleColor.Magenta,    true)  }, // 꽃
-            { '#', new Tile("##", ConsoleColor.DarkGray,   false) }, // 울타리
-            { 'S', new Tile("[]", ConsoleColor.Yellow,     false) }, // 표지판
-            { 'H', new Tile("HH", ConsoleColor.DarkRed,    false) }, // 집
-            { '.', new Tile("  ", ConsoleColor.Black,      true)  }, // 길(공백)
-            
+            { 'T', new Tile("♣", ConsoleColor.Green,      false) },    // 나무
+            { 'G', new Tile("ww", ConsoleColor.DarkGreen,  true ) },    // 풀숲
+            { 'F', new Tile("**", ConsoleColor.Magenta,    true ) },    // 꽃
+            { '#', new Tile("##", ConsoleColor.DarkGray,   false) },    // 울타리
+            { 'S', new Tile("[]", ConsoleColor.Yellow,     false) },    // 표지판
+            { 'H', new Tile("HH", ConsoleColor.DarkRed,    false) },    // 집
+            { '.', new Tile("  ", ConsoleColor.Black,      true ) },    // 길(공백)
+            { '~', new Tile("~~", ConsoleColor.Cyan,       false) },    // 물
             // 맵 밖(경계) 처리를 위한 더미 타일
             { 'X', new Tile("♣", ConsoleColor.Green,      false) }
         };
