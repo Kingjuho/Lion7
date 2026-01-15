@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 using PokemonTextRPG.Character;
@@ -19,22 +20,25 @@ namespace PokemonTextRPG.Managers
         // 전투 로그
         private string _battleLog = "";
 
+        // 키 매핑을 위한 배열
+        private readonly ConsoleKey[] _skillKeys = { ConsoleKey.Z, ConsoleKey.X, ConsoleKey.C, ConsoleKey.V };
+        private readonly string[] _skillKeyNames = { "Z", "X", "C", "V" };
+
         // 배틀 시작
         public void StartBattle(Player player, Pokemon wildPokemon, Action onBattleEnd)
         {
+            // 초기화
             _player = player;
             _enemy = wildPokemon;
             _myPokemon = player.Team[0];    // 선두 포켓몬
             _onBattleEnd = onBattleEnd;
             _battleLog = $"앗! 야생의 {_enemy.Name}(이)가 나타났다!";
 
-            // 전투 연출
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.Clear();
-            Thread.Sleep(50);
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Clear();
-            Thread.Sleep(50);
+            // 전투 오프닝 연출
+            PlayEncounterAnimation();
+
+            // 전투 시작 상태 설정
+            SetPlayerTurnState("무엇을 할까?");
         }
 
         // 배틀 중
@@ -47,37 +51,111 @@ namespace PokemonTextRPG.Managers
             HandleInput();
         }
 
+        // 전투 오프닝 연출
+        private void PlayEncounterAnimation()
+        {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black; // 배경색 설정 오류 수정 (White -> Black 순서 확인 필요하지만 원본 존중)
+
+            for (int i = 0; i < Constants.SCREEN_HEIGHT; i += 2)
+            {
+                // 짝수 줄
+                Console.SetCursorPosition(0, i);
+                Console.Write(new string(' ', Constants.SCREEN_WIDTH));
+                Thread.Sleep(30);
+
+                // 홀수 줄(역순)
+                int bottom = Constants.SCREEN_HEIGHT - 1 - i;
+                if (bottom > 0)
+                {
+                    Console.SetCursorPosition(0, bottom);
+                    Console.Write(new string(' ', Constants.SCREEN_WIDTH));
+                }
+                Thread.Sleep(30);
+            }
+
+            // 화면 초기화
+            Console.ResetColor();
+            Console.Clear();
+            Thread.Sleep(200);
+
+            // 첫 조우 화면
+            SetPlayerTurnState($"앗! 야생의 {_enemy.Name}(이)가 나타났다!");
+        }
+        
+        // 플레이어 턴의 대기 상태로 전환
+        private void SetPlayerTurnState(string message)
+        {
+            _battleLog = message;
+            DrawBattleScreen();
+            Thread.Sleep(1000);
+        }
+
         // 배틀 화면 출력
         private void DrawBattleScreen()
         {
             Console.SetCursorPosition(0, 0);
-            // 상단 적 정보 (너비 42칸에 맞춰 중앙 정렬 느낌으로)
-            Console.WriteLine(new string('=', Constants.SCREEN_WIDTH));
-            Console.WriteLine($" [적] {_enemy.Name} Lv.{_enemy.Level}");
+
+            // 상단 적 정보(너비 42칸에 맞춰 중앙 정렬 느낌으로)
+            DrawSeparator('=');
+            Console.WriteLine($" {_enemy.Name} Lv.{_enemy.Level}");
             Console.WriteLine($" HP: {_enemy.CurrentHp}/{_enemy.MaxHp}".PadRight(Constants.SCREEN_WIDTH));
-            Console.WriteLine(new string('-', Constants.SCREEN_WIDTH));
+            DrawSeparator('-');
 
-            // 중간 공백 (포켓몬이 있는 공간)
-            for (int i = 0; i < 5; i++) Console.WriteLine(new string(' ', Constants.SCREEN_WIDTH));
+            // 중간 공백(포켓몬이 있는 공간)
+            for (int i = 0; i < 5; i++) DrawSeparator(' ');
 
-            // 하단 내 정보
-            Console.WriteLine(new string('-', Constants.SCREEN_WIDTH));
-            Console.WriteLine($" [나] {_myPokemon.Name} Lv.{_myPokemon.Level}");
+            // 하단 내 포켓몬 정보
+            DrawSeparator('-');
+            Console.WriteLine($" {_myPokemon.Name} Lv.{_myPokemon.Level}");
             Console.WriteLine($" HP: {_myPokemon.CurrentHp}/{_myPokemon.MaxHp}".PadRight(Constants.SCREEN_WIDTH));
-            Console.WriteLine(new string('=', Constants.SCREEN_WIDTH));
+            DrawSeparator('=');
 
-            // UI 영역 (로그 또는 메뉴)
-            // 로그가 있으면 로그를 보여주고, 아니면 메뉴를 보여줌
+            // UI 영역(로그 또는 메뉴)
+            DrawSeparator('=');
             Console.WriteLine(_battleLog.PadRight(Constants.SCREEN_WIDTH - 1));
+            DrawSeparator('-');
 
             // 기술 목록 표시
-            if (_myPokemon.Skills.Count >= 1)
-                Console.Write($" [Z] {_myPokemon.Skills[0].Name} ");
-            if (_myPokemon.Skills.Count >= 2)
-                Console.Write($" [X] {_myPokemon.Skills[1].Name}");
+            RenderSkillMenu();
 
-            Console.WriteLine(); // 줄바꿈
-            Console.WriteLine(" [Esc] 도망가기");
+            // 빤스런
+            DrawSeparator('-');
+            Console.WriteLine(" [Space] 도망가기");
+        }
+
+        // 기술 목록 표시
+        private void RenderSkillMenu()
+        {
+            int skillCount = _myPokemon.Skills.Count;
+
+            // 기술이 없으면 빈 줄 출력, 최대 2줄
+            if (skillCount == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine();
+                return;
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (i < skillCount)
+                {
+                    var skill = _myPokemon.Skills[i];
+                    string key = _skillKeyNames[i];
+                    Console.WriteLine($" [{key}] {skill.Name}".PadRight(Constants.SCREEN_WIDTH - 1));
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+
+        // 구분선 헬퍼
+        private void DrawSeparator(char c)
+        {
+            Console.WriteLine(new string(c, Constants.SCREEN_WIDTH));
         }
 
         private void HandleInput() 
@@ -85,24 +163,24 @@ namespace PokemonTextRPG.Managers
             // 애니메이션 도중 입력 방지
             if (!Console.KeyAvailable) return;
 
+            // 누른 키가 순서대로 Z, X, C, V인지 확인
             ConsoleKeyInfo key = Console.ReadKey(true);
-
-            switch (key.Key)
+            for (int i = 0; i < _skillKeys.Length; i++)
             {
-                case ConsoleKey.Z:
-                    if (_myPokemon.Skills.Count > 0) ExecuteTurn(_myPokemon.Skills[0]);
-                    break;
+                if (key.Key == _skillKeys[i])
+                {
+                    if (_myPokemon.Skills.Count > i)
+                    {
+                        ExecuteTurn(_myPokemon.Skills[i]);
+                        return;
+                    }
+                }
+            }
 
-                case ConsoleKey.X:
-                    if (_myPokemon.Skills.Count > 1) ExecuteTurn(_myPokemon.Skills[1]);
-                    break;
-
-                case ConsoleKey.Escape:
-                    _battleLog = "무사히 도망쳤다!";
-                    DrawBattleScreen();
-                    Thread.Sleep(1000);
-                    _onBattleEnd?.Invoke();
-                    break;
+            // 도망치기
+            if (key.Key == ConsoleKey.Spacebar)
+            {
+                TryEscape();
             }
         }
 
@@ -115,7 +193,7 @@ namespace PokemonTextRPG.Managers
 
             // 선공 결정(동속전일 경우 반반)
             bool playerFirst = _myPokemon.Spd >= _enemy.Spd;
-            if (_myPokemon.Spd == _enemy.Spd) 
+            if (_myPokemon.Spd == _enemy.Spd)
                 playerFirst = Constants.random.Next(2) == 0;
 
             // 순서대로 공격(후공은 살아있으면 반격)
@@ -131,20 +209,23 @@ namespace PokemonTextRPG.Managers
                 if (_myPokemon.CurrentHp > 0)
                     Attack(_myPokemon, _enemy, playerSkill);
             }
+
+            // 대기 상태
+            if (_myPokemon.CurrentHp > 0 && _enemy.CurrentHp > 0)
+            {
+                SetPlayerTurnState("무엇을 할까?");
+            }
         }
 
         // 공격 처리
         private void Attack(Pokemon attacker, Pokemon defender, Skill skill)
         {
             // 로그 출력 및 대기
-            _battleLog = $"{attacker.Name}의 {skill.Name}!";
-            DrawBattleScreen();
-            Thread.Sleep(2000);
+            SetPlayerTurnState($"{attacker.Name}의 {skill.Name}!");
 
             // 데미지 계산
             int damage = CalculateDamage(attacker, defender, skill);
-            defender.CurrentHp -= damage;
-            if (defender.CurrentHp < 0) defender.CurrentHp = 0;
+            defender.CurrentHp = Math.Max(0, defender.CurrentHp - damage);
 
             // 체력 갱신
             DrawBattleScreen();
@@ -171,28 +252,35 @@ namespace PokemonTextRPG.Managers
             return (int)(damage * randomMod);
         }
 
+        // 도망치기
+        private void TryEscape()
+        {
+            SetPlayerTurnState("무사히 도망쳤다!");
+            EndBattle();
+        }
+
         // 기절 처리
         private void HandleFaint(Pokemon loser)
         {
-            _battleLog = $"{loser.Name}은(는) 쓰러졌다!";
-            DrawBattleScreen();
-            Thread.Sleep(1000);
+            SetPlayerTurnState($"{loser.Name}은(는) 쓰러졌다!");
 
             if (loser == _enemy)
             {
                 _battleLog = "승리했다! 경험치를 얻었다."; // 경험치는 나중에
-                DrawBattleScreen();
-                Thread.Sleep(1000);
             }
             else
             {
                 _battleLog = "눈앞이 캄캄해졌다...";
-                DrawBattleScreen();
-                Thread.Sleep(1000);
-                // 게임 오버 처리는 나중에
             }
 
-            // 전투 종료 콜백 호출
+            EndBattle();
+        }
+
+        // 배틀 종료 및 콜백 호출
+        private void EndBattle()
+        {
+            DrawBattleScreen();
+            Thread.Sleep(1000);
             _onBattleEnd?.Invoke();
         }
     }

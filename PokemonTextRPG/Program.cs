@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading;
 using PokemonTextRPG.Character;
 using PokemonTextRPG.Managers;
 using PokemonTextRPG.Map;
@@ -34,6 +34,8 @@ namespace PokemonTextRPG
             catch
             {
                 Console.WriteLine("해상도 설정 실패. 콘솔 폰트 크기를 줄인 후 다시 실행해주세요.");
+                Thread.Sleep(5000);
+                return;
             }
 
             // 맵 로드 (태초마을)
@@ -121,9 +123,10 @@ namespace PokemonTextRPG
                 // 야생 포켓몬 조우
                 if (Constants.random.Next(0, 100) < Constants.APPEAR_PERCENTAGE)
                 {
-                    // 배틀 매니저 초기화 및 상태 전환
+                    // 배틀 매니저 초기화 및 상태 전환 콜백
                     _battleManager.StartBattle(_player, PokemonFactory.CreateWildPokemon(), () =>
                     {
+                        Console.Clear(); // 화면 초기화
                         _currentState = GameState.Field;
                     });
 
