@@ -929,14 +929,14 @@ namespace TextRPG
         public void Progress()
         {
             int input = 0;
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Player.Render();
                 DrawMap();
                 input = int.Parse(Console.ReadLine());
 
-                switch(input)
+                switch (input)
                 {
                     case 1:
                     case 2:
@@ -964,7 +964,7 @@ namespace TextRPG
         // input값에 맞는 몬스터 생산
         public void CreateMonster(int input)
         {
-            switch(input)
+            switch (input)
             {
                 case 1:
                     Monster = new Monster("초보 몹", 30, 3);
@@ -983,7 +983,7 @@ namespace TextRPG
         {
             int input = 0;
 
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Player.Render();
@@ -992,7 +992,7 @@ namespace TextRPG
                 Console.Write("1: 공격, 2: 도망 : ");
                 input = int.Parse(Console.ReadLine());
 
-                switch(input)
+                switch (input)
                 {
                     case 1:
                         // 몬스터 공격
@@ -1004,12 +1004,12 @@ namespace TextRPG
                         return;
                 }
 
-                if(Monster.Info.Hp <= 0)
+                if (Monster.Info.Hp <= 0)
                 {
                     Monster = null;
                     break;
                 }
-                else if(Player.Info.Hp <= 0)
+                else if (Player.Info.Hp <= 0)
                 {
                     Player.Info.Hp = 100;
 
@@ -1043,14 +1043,14 @@ namespace TextRPG
         {
             int input = 0;
 
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 player.Render();
                 Console.Write("1: 사냥터, 2: 종료: ");
                 input = int.Parse(Console.ReadLine());
 
-                switch(input)
+                switch (input)
                 {
                     case 1: // 사냥터
                         field.Player = player;
