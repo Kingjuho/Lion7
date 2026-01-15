@@ -25,7 +25,7 @@ namespace PokemonTextRPG
             Console.Title = Constants.TITLE;
             Console.CursorVisible = false;
 
-            // 100x30 해상도 설정
+            // 해상도 설정
             try
             {
                 Console.SetWindowSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
