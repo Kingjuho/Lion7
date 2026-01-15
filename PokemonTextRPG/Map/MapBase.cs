@@ -3,7 +3,7 @@
     public abstract class MapBase
     {
         public string Name { get; set; }    // 맵 이름
-        protected char[,] _grid;          // 맵 좌표계, 이모지는 전각 문자이므로 char 사용 금지
+        protected char[,] _grid;          // 맵 좌표계
 
         // 맵 크기
         public int Height => _grid.GetLength(0);

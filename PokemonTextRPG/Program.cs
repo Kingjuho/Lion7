@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using PokemonTextRPG.Character;
+using PokemonTextRPG.Managers;
 using PokemonTextRPG.Map;
 using PokemonTextRPG.Map.Locations;
 using PokemonTextRPG.Monster;
@@ -10,15 +10,19 @@ namespace PokemonTextRPG
 { 
     internal class Program
     {
+        // 싱글톤
         static bool _isGameRunning = true;
+        static GameState _currentState = GameState.Field;
+
         static Player _player;
         static MapBase _currentMap;
+        static BattleManager _battleManager = new BattleManager();
 
         // 게임 초기화
         static void InitializeGame()
         {
             // 콘솔 설정
-            Console.Title = "Pokemon RPG";
+            Console.Title = Constants.TITLE;
             Console.CursorVisible = false;
 
             // 100x30 해상도 설정
@@ -43,8 +47,42 @@ namespace PokemonTextRPG
             _player.Team.Add(starter);
         }
 
+        // 필드 화면 렌더링
+        static void RenderField()
+        {
+            // 맵 렌더링
+            MapRenderer.Draw(_currentMap, _player.X, _player.Y);
+
+            // 하단 UI 렌더링
+            int uiY = 20;
+            Console.SetCursorPosition(0, uiY++);
+            Console.WriteLine(new string('=', Constants.SCREEN_WIDTH - 1));
+
+            // 내 위치
+            ClearLine(uiY);
+            Console.SetCursorPosition(0, uiY++);
+            Console.Write($" [내 위치] ({_player.X:D2}, {_player.Y:D2})");
+
+            // 선두 포켓몬
+            ClearLine(uiY);
+            Console.SetCursorPosition(0, uiY++);
+            Console.Write($" [파트너] {_player.Team[0].Name} Lv.{_player.Team[0].Level}");
+
+            // 조작 키
+            ClearLine(uiY);
+            Console.SetCursorPosition(0, uiY);
+            Console.Write(" [Key] 방향키: 이동 / ESC: 종료");
+        }
+
+        // 특정 줄 공백으로 완전 삭제
+        static void ClearLine(int y)
+        {
+            Console.SetCursorPosition(0, y);
+            Console.Write(new string(' ', Constants.SCREEN_WIDTH - 1));
+        }
+
         // 키 입력
-        static void ProcessInput()
+        static void ProcessFieldInput()
         {
             // 키 입력 대기
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -83,24 +121,15 @@ namespace PokemonTextRPG
                 // 야생 포켓몬 조우
                 if (Constants.random.Next(0, 100) < Constants.APPEAR_PERCENTAGE)
                 {
-                    Console.Clear();
-                    Console.WriteLine("앗! 야생 포켓몬이 튀어나왔다!");
-                    Console.ReadKey();
+                    // 배틀 매니저 초기화 및 상태 전환
+                    _battleManager.StartBattle(_player, PokemonFactory.CreateWildPokemon(), () =>
+                    {
+                        _currentState = GameState.Field;
+                    });
+
+                    _currentState = GameState.Battle;
                 }
             }
-        }
-
-        // 현재 맵 렌더링
-        static void Render()
-        {
-            // 맵 그리기
-            MapRenderer.Draw(_currentMap, _player.X, _player.Y);
-
-            // 하단 UI 영역
-            Console.SetCursorPosition(0, 20);
-            Console.WriteLine($"==================================================");
-            Console.WriteLine($" [Player] 위치: ({_player.X}, {_player.Y}) | 파트너: {_player.Team[0].Name} Lv.{_player.Team[0].Level}");
-            Console.WriteLine($" [조작] 방향키: 이동 / ESC: 종료");
         }
 
         static void Main(string[] args)
@@ -111,8 +140,20 @@ namespace PokemonTextRPG
 
             while (_isGameRunning)
             {
-                Render();
-                ProcessInput();
+                switch (_currentState)
+                {
+                    case GameState.MainMenu:
+                        break;
+                    case GameState.Field:
+                        RenderField();
+                        ProcessFieldInput();
+                        break;
+                    case GameState.Battle:
+                        _battleManager.Update();
+                        break;
+                    case GameState.GameOver:
+                        break;
+                }
             }
         }
     }

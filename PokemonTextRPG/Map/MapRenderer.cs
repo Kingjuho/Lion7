@@ -11,8 +11,8 @@ namespace PokemonTextRPG.Map
 
             // 상단 정보 출력
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"[ 현재 위치: {map.Name} ]");
-            Console.WriteLine("----------------------------------------------------");
+            Console.WriteLine($"[ {map.Name} ]");
+            Console.WriteLine(new string('=', Constants.SCREEN_WIDTH - 1));
 
             for (int y = 0; y < map.Height; y++)
             {
@@ -21,7 +21,7 @@ namespace PokemonTextRPG.Map
                     // 플레이어 출력
                     if (x == playerX && y == playerY)
                     {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.Write("＠");
                     }
                     else
