@@ -5,21 +5,27 @@
         public PalletTown()
         {
             Name = "태초마을";
-            StartX = 5;
-            StartY = 5;
+            StartX = 14; StartY = 6;
             string[] design =
             {
-                "TTTTTTTTTTTTTTTTTTTT",
+                "...T.....TGGT.....T.",
+                "TTTTTTTTTTGGTTTTTTTT",
                 "T..................T",
-                "T..HHHH......HHHH..T",
-                "T..HHHH......HHHH..T",
-                "T..HHHH......HHHH..T",
                 "T..................T",
-                "T.......S..........T",
-                "T...FFFF....GGGG...T",
-                "T...FFFF....GGGG...T",
+                "T...HHHH....HHHH...T",
+                "T..SHHHH...SHHHH...T",
                 "T..................T",
-                "TTTTTTTT....TTTTTTTT"
+                "T..................T",
+                "T..................T",
+                "T...###S...........T",
+                "T...FFFF..HHHHHH...T",
+                "T...FFFF..HHHHHH...T",
+                "T..................T",
+                "T.........###S##...T",
+                "T...~~~~..FFFFFF...T",
+                "T...~~~~..FFFFFF...T",
+                "T...~~~~...........T",
+                "TT..~~~~TTTTTTTTTTTT",
             };
 
             Initialize(design);
