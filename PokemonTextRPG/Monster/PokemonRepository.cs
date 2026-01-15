@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using PokemonTextRPG.Skills;
+
 namespace PokemonTextRPG.Monster
 {
     // 포켓몬 딕셔너리

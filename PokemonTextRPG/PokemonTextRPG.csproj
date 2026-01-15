@@ -44,16 +44,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character\Player.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="Map\MapBase.cs" />
     <Compile Include="Map\MapRenderer.cs" />
     <Compile Include="Map\MapTile.cs" />
     <Compile Include="Map\Locations\PalletTown.cs" />
     <Compile Include="Map\TileRepository.cs" />
+    <Compile Include="Monster\Pokemon.cs" />
     <Compile Include="Monster\PokemonData.cs" />
     <Compile Include="Monster\PokemonFactory.cs" />
     <Compile Include="Monster\PokemonRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skills\MoveType.cs" />
+    <Compile Include="Skills\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
