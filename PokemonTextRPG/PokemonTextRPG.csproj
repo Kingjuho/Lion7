@@ -46,6 +46,7 @@
     <Compile Include="Character\Player.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Managers\BattleManager.cs" />
     <Compile Include="Map\MapBase.cs" />
     <Compile Include="Map\MapRenderer.cs" />
     <Compile Include="Map\MapTile.cs" />
