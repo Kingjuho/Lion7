@@ -32,7 +32,6 @@ namespace PokemonTextRPG.Managers
             _enemy = wildPokemon;
             _myPokemon = player.Team[0];    // 선두 포켓몬
             _onBattleEnd = onBattleEnd;
-            _battleLog = $"앗! 야생의 {_enemy.Name}(이)가 나타났다!";
 
             // 전투 오프닝 연출
             PlayEncounterAnimation();
@@ -80,15 +79,15 @@ namespace PokemonTextRPG.Managers
             Thread.Sleep(200);
 
             // 첫 조우 화면
-            SetPlayerTurnState($"앗! 야생의 {_enemy.Name}(이)가 나타났다!");
+            SetPlayerTurnState($"앗! 야생의 {_enemy.Name}(이)가 나타났다!", 2000);
         }
         
         // 플레이어 턴의 대기 상태로 전환
-        private void SetPlayerTurnState(string message)
+        private void SetPlayerTurnState(string message, int ms = 1000)
         {
             _battleLog = message;
             DrawBattleScreen();
-            Thread.Sleep(1000);
+            Thread.Sleep(ms);
         }
 
         // 배틀 화면 출력
@@ -103,7 +102,7 @@ namespace PokemonTextRPG.Managers
             DrawSeparator('-');
 
             // 중간 공백(포켓몬이 있는 공간)
-            for (int i = 0; i < 5; i++) DrawSeparator(' ');
+            for (int i = 0; i < 7; i++) DrawSeparator(' ');
 
             // 하단 내 포켓몬 정보
             DrawSeparator('-');
@@ -113,7 +112,7 @@ namespace PokemonTextRPG.Managers
 
             // UI 영역(로그 또는 메뉴)
             DrawSeparator('=');
-            Console.WriteLine(_battleLog.PadRight(Constants.SCREEN_WIDTH - 1));
+            PrintFixedLine(_battleLog);
             DrawSeparator('-');
 
             // 기술 목록 표시
@@ -127,27 +126,23 @@ namespace PokemonTextRPG.Managers
         // 기술 목록 표시
         private void RenderSkillMenu()
         {
-            int skillCount = _myPokemon.Skills.Count;
+            int maxSlots = _skillKeys.Length;
+            int currentSkillCount = _myPokemon.Skills.Count;
 
-            // 기술이 없으면 빈 줄 출력, 최대 2줄
-            if (skillCount == 0)
+            for (int i = 0; i < maxSlots; i++)
             {
-                Console.WriteLine();
-                Console.WriteLine();
-                return;
-            }
-
-            for (int i = 0; i < 2; i++)
-            {
-                if (i < skillCount)
+                // 기술이 있는 슬롯
+                if (i < currentSkillCount)
                 {
                     var skill = _myPokemon.Skills[i];
                     string key = _skillKeyNames[i];
-                    Console.WriteLine($" [{key}] {skill.Name}".PadRight(Constants.SCREEN_WIDTH - 1));
+                    string text = $" [{key}] {skill.Name}";
+                    PrintFixedLine(text);
                 }
+                // 기술이 없는 슬롯
                 else
                 {
-                    Console.WriteLine();
+                    DrawSeparator(' ');
                 }
             }
         }
@@ -155,7 +150,27 @@ namespace PokemonTextRPG.Managers
         // 구분선 헬퍼
         private void DrawSeparator(char c)
         {
-            Console.WriteLine(new string(c, Constants.SCREEN_WIDTH));
+            Console.WriteLine(new string(c, Constants.SCREEN_WIDTH - 1));
+        }
+
+        // 한글 너비를 고려한 출력
+        private void PrintFixedLine(string text)
+        {
+            int currentLength = GetDisplayLength(text);
+            int padding = Math.Max(0, Constants.SCREEN_WIDTH - 1 - currentLength);
+            Console.WriteLine(text + new string(' ', padding));
+        }
+
+        // 한글(2바이트) 헬퍼
+        private int GetDisplayLength(string str)
+        {
+            int length = 0;
+            foreach (char c in str)
+            {
+                if (c >= '\uAC00' && c <= '\uD7A3') length += 2;
+                else length += 1;
+            }
+            return length;
         }
 
         private void HandleInput() 
@@ -262,15 +277,15 @@ namespace PokemonTextRPG.Managers
         // 기절 처리
         private void HandleFaint(Pokemon loser)
         {
-            SetPlayerTurnState($"{loser.Name}은(는) 쓰러졌다!");
+            SetPlayerTurnState($"{loser.Name}은(는) 쓰러졌다!", 1500);
 
             if (loser == _enemy)
             {
-                _battleLog = "승리했다! 경험치를 얻었다."; // 경험치는 나중에
+                SetPlayerTurnState("승리했다! 경험치를 얻었다.", 1500);
             }
             else
             {
-                _battleLog = "눈앞이 캄캄해졌다...";
+                SetPlayerTurnState("눈앞이 캄캄해졌다...", 1500);
             }
 
             EndBattle();
