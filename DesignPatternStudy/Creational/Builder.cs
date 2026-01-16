@@ -70,7 +70,7 @@ namespace DesignPatternStudy.Creational
 
         public static void Run()
         {
-            Console.WriteLine("=== 빌더 패턴 ===");
+            Console.WriteLine("\n=== Builder ===");
 
             // 함수에 인자를 추가할 일이 생길 경우 해당 객체를 생성하는 부분을 전부 고쳐야함
             Servant_NoBuilder servant1 = new Servant_NoBuilder("잔 다르크", "룰러");

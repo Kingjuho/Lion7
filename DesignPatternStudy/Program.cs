@@ -15,6 +15,7 @@ namespace DesignPatternStudy
         {
             // 생성(Creational)
             Builder.Run();
+            FactoryMethod.Run();
 
             // 구조(Structural)
 
