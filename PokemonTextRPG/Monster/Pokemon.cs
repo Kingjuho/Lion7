@@ -7,10 +7,13 @@ namespace PokemonTextRPG.Monster
     // 포켓몬 클래스
     public class Pokemon
     {
-        public string Name { get; set; }    // 이름
-        public int Level { get; set; }      // 레벨
-        public int MaxHp { get; set; }      // 최대 체력
-        public int CurrentHp { get; set; }  // 현재 체력
+        // 기본 정보
+        public string Name { get; set; }        // 이름
+        public int Level { get; set; }          // 레벨
+        public int MaxHp { get; set; }          // 최대 체력
+        public int CurrentHp { get; set; }      // 현재 체력
+        public int MaxExp { get; private set; } // 현재 레벨의 최대 경험치
+        public int Exp { get; private set; }    // 현재 레벨의 현재 경험치
 
         // 기술 목록
         public List<Skill> Skills { get; set; } = new List<Skill>();
@@ -33,6 +36,9 @@ namespace PokemonTextRPG.Monster
 
             UpdateStats();
             CurrentHp = MaxHp;
+
+            Exp = 0;
+            MaxExp = Level * 100;
         }
 
         // 실능치 갱신
@@ -44,6 +50,23 @@ namespace PokemonTextRPG.Monster
             SpAtk = CalculateStat(BaseStats[3], Level);
             SpDef = CalculateStat(BaseStats[4], Level);
             Spd = CalculateStat(BaseStats[5], Level);
+        }
+
+        // 경험치 계산
+        public bool GainExp(int amount)
+        {
+            Exp += amount;
+            bool leveledUp = false;
+
+            while (Exp >= MaxExp)
+            {
+                Exp -= MaxExp;
+                LevelUp();
+                MaxExp = Level * 100;
+                leveledUp = true;
+            }
+
+            return leveledUp;
         }
 
         // 레벨 업

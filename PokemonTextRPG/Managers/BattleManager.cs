@@ -79,7 +79,7 @@ namespace PokemonTextRPG.Managers
             Thread.Sleep(200);
 
             // 첫 조우 화면
-            SetPlayerTurnState($"앗! 야생의 {_enemy.Name}(이)가 나타났다!", 2000);
+            SetPlayerTurnState($"앗! 야생 {_enemy.Name}(이)가 튀어나왔다!", 2000);
         }
         
         // 플레이어 턴의 대기 상태로 전환
@@ -281,7 +281,19 @@ namespace PokemonTextRPG.Managers
 
             if (loser == _enemy)
             {
-                SetPlayerTurnState("승리했다! 경험치를 얻었다.", 1500);
+                // TODO: 경험치 계산, 일단 하드코딩.. 나중에 리팩토링
+                int expReward = _enemy.Level * 50;
+                SetPlayerTurnState($"승리했다! 경험치 {expReward}를 획득했다.", 1500);
+
+                // 한 번이라도 레벨업 하면 true
+                if (_myPokemon.GainExp(expReward))
+                {
+                    // 레벨 업
+                    SetPlayerTurnState($"{_myPokemon.Name}은(는) Lv.{_myPokemon.Level}(으)로 성장했다!", 2000);
+                    // 화면 갱신
+                    DrawBattleScreen();
+                    Thread.Sleep(1000);
+                }
             }
             else
             {
