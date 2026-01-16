@@ -106,7 +106,7 @@ namespace DesignPatternStudy.Creational
             protected override Servant CreateServant()
             {
                 // '세이버'를 만드는 복잡한 과정을 캡슐화.
-                // 만약 세이버 생성 시에만 필요한 추가 설정(검 데이터 로드 등)이 있다면 여기에 삽입
+                // 검 데이터 로드, DB 연동 등 무거운 작업은 생성자가 아닌 이 구역에 작성
                 return new Saber();
             }
         }
