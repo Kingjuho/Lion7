@@ -13,23 +13,23 @@ namespace PokemonTextRPG.Monster
                 PokemonId.Charmander,
                 new PokemonData("파이리", new int[]{ 39, 52, 43, 60, 50, 65 }, new List<Skill>
                 {
-                    new Skill("몸통박치기", MoveType.Physical, 40),
-                    new Skill("불꽃세례", MoveType.Special, 40)
+                    SkillRepository.GetData(SkillId.Tackle),
+                    SkillRepository.GetData(SkillId.Ember),
                 })
             },
             {
                 PokemonId.Pidgey,
                 new PokemonData("구구", new int[]{ 40, 45, 40, 35, 35, 56 }, new List<Skill>
                 {
-                    new Skill("몸통박치기", MoveType.Physical, 40),
-                    new Skill("쪼기", MoveType.Physical, 35)
+                    SkillRepository.GetData(SkillId.Tackle),
+                    SkillRepository.GetData(SkillId.Peck)
                 })
             },
             {
                 PokemonId.Rattata,
                 new PokemonData("꼬렛", new int[]{ 30, 56, 35, 25, 35, 72 }, new List<Skill>
                 {
-                    new Skill("몸통박치기", MoveType.Physical, 40)
+                    SkillRepository.GetData(SkillId.Tackle),
                 })
             }
         };
