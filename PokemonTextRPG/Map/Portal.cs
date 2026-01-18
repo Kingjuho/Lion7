@@ -1,12 +1,5 @@
 ﻿namespace PokemonTextRPG.Map
 {
-    public enum MapId
-    {
-        PalletTown,
-        Route1_1,
-        Route1_2,
-        ViridianCity,
-    }
     public class Portal
     {
         // 포탈 좌표

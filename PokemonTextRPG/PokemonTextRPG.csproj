@@ -47,6 +47,10 @@
     <Compile Include="Constants.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Managers\BattleManager.cs" />
+    <Compile Include="Map\Locations\ViridianCity_1.cs" />
+    <Compile Include="Map\Locations\ViridianCity_2.cs" />
+    <Compile Include="Map\Locations\ViridianCity_3.cs" />
+    <Compile Include="Map\Locations\ViridianCity_4.cs" />
     <Compile Include="Map\Locations\Route1_1.cs" />
     <Compile Include="Map\Locations\Route1_2.cs" />
     <Compile Include="Map\MapBase.cs" />
