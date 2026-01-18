@@ -2,7 +2,7 @@
 
 using PokemonTextRPG.Skills;
 
-namespace PokemonTextRPG.Monster
+namespace PokemonTextRPG.Pokemons
 {
     // 포켓몬 데이터 스키마 (설계도)
     public class PokemonData

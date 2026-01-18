@@ -4,7 +4,7 @@ using PokemonTextRPG.Character;
 using PokemonTextRPG.Managers;
 using PokemonTextRPG.Map;
 using PokemonTextRPG.Map.Locations;
-using PokemonTextRPG.Monster;
+using PokemonTextRPG.Pokemons;
 
 namespace PokemonTextRPG
 { 

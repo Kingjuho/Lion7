@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 
 using PokemonTextRPG.Character;
-using PokemonTextRPG.Monster;
+using PokemonTextRPG.Pokemons;
 using PokemonTextRPG.Skills;
 
 namespace PokemonTextRPG.Managers

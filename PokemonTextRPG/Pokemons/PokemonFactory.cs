@@ -1,4 +1,4 @@
-﻿namespace PokemonTextRPG.Monster
+﻿namespace PokemonTextRPG.Pokemons
 {
     public static class PokemonFactory
     {

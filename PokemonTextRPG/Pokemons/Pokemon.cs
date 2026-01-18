@@ -2,7 +2,7 @@
 
 using PokemonTextRPG.Skills;
 
-namespace PokemonTextRPG.Monster
+namespace PokemonTextRPG.Pokemons
 {
     // 포켓몬 클래스
     public class Pokemon
@@ -56,17 +56,17 @@ namespace PokemonTextRPG.Monster
         public bool GainExp(int amount)
         {
             Exp += amount;
-            bool leveledUp = false;
+            bool isLevelUp = false;
 
             while (Exp >= MaxExp)
             {
                 Exp -= MaxExp;
                 LevelUp();
                 MaxExp = Level * 100;
-                leveledUp = true;
+                isLevelUp = true;
             }
 
-            return leveledUp;
+            return isLevelUp;
         }
 
         // 레벨 업
@@ -94,6 +94,17 @@ namespace PokemonTextRPG.Monster
         {
             int core = 2 * baseStat;
             return (core * level / 100) + 5;
+        }
+
+        // 힐(인자 없으면 풀피로)
+        public void Heal()
+        {
+            CurrentHp = MaxHp;
+        }
+        public void Heal(int amount)
+        {
+            CurrentHp += amount;
+            if (CurrentHp > MaxHp) CurrentHp = MaxHp;
         }
     }
 }
