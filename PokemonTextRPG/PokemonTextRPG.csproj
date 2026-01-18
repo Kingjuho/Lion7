@@ -49,6 +49,9 @@
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemRepository.cs" />
     <Compile Include="Managers\BattleManager.cs" />
+    <Compile Include="Managers\FieldManager.cs" />
+    <Compile Include="Managers\GameManager.cs" />
+    <Compile Include="Managers\UIManager.cs" />
     <Compile Include="Map\Locations\ViridianCity_1.cs" />
     <Compile Include="Map\Locations\ViridianCity_2.cs" />
     <Compile Include="Map\Locations\ViridianCity_3.cs" />

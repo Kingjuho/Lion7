@@ -95,30 +95,30 @@ namespace PokemonTextRPG.Managers
             Console.SetCursorPosition(0, 0);
 
             // 상단 적 정보(너비 42칸에 맞춰 중앙 정렬 느낌으로)
-            DrawSeparator('=');
+            UIManager.DrawSeparator('=');
             Console.WriteLine($" {_enemy.Name} Lv.{_enemy.Level}");
             Console.WriteLine($" HP: {_enemy.CurrentHp}/{_enemy.MaxHp}".PadRight(Constants.SCREEN_WIDTH));
-            DrawSeparator('-');
+            UIManager.DrawSeparator('-');
 
             // 중간 공백(포켓몬이 있는 공간)
-            for (int i = 0; i < 7; i++) DrawSeparator(' ');
+            for (int i = 0; i < 7; i++) UIManager.DrawSeparator(' ');
 
             // 하단 내 포켓몬 정보
-            DrawSeparator('-');
+            UIManager.DrawSeparator('-');
             Console.WriteLine($" {_myPokemon.Name} Lv.{_myPokemon.Level}");
             Console.WriteLine($" HP: {_myPokemon.CurrentHp}/{_myPokemon.MaxHp}".PadRight(Constants.SCREEN_WIDTH));
-            DrawSeparator('=');
+            UIManager.DrawSeparator('=');
 
             // UI 영역(로그 또는 메뉴)
-            DrawSeparator('=');
-            PrintFixedLine(_battleLog);
-            DrawSeparator('-');
+            UIManager.DrawSeparator('=');
+            UIManager.PrintFixedLine(_battleLog);
+            UIManager.DrawSeparator('-');
 
             // 기술 목록 표시
             RenderSkillMenu();
 
             // 빤스런
-            DrawSeparator('-');
+            UIManager.DrawSeparator('-');
             Console.WriteLine(" [Space] 도망가기");
         }
 
@@ -136,40 +136,14 @@ namespace PokemonTextRPG.Managers
                     var skill = _myPokemon.Skills[i];
                     string key = _skillKeyNames[i];
                     string text = $" [{key}] {skill.Name}";
-                    PrintFixedLine(text);
+                    UIManager.PrintFixedLine(text);
                 }
                 // 기술이 없는 슬롯
                 else
                 {
-                    DrawSeparator(' ');
+                    UIManager.DrawSeparator(' ');
                 }
             }
-        }
-
-        // 구분선 헬퍼
-        private void DrawSeparator(char c)
-        {
-            Console.WriteLine(new string(c, Constants.SCREEN_WIDTH - 1));
-        }
-
-        // 한글 너비를 고려한 출력
-        private void PrintFixedLine(string text)
-        {
-            int currentLength = GetDisplayLength(text);
-            int padding = Math.Max(0, Constants.SCREEN_WIDTH - 1 - currentLength);
-            Console.WriteLine(text + new string(' ', padding));
-        }
-
-        // 한글(2바이트) 헬퍼
-        private int GetDisplayLength(string str)
-        {
-            int length = 0;
-            foreach (char c in str)
-            {
-                if (c >= '\uAC00' && c <= '\uD7A3') length += 2;
-                else length += 1;
-            }
-            return length;
         }
 
         private void HandleInput() 
