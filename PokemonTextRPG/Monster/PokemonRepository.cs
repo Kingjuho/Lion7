@@ -4,6 +4,14 @@ using PokemonTextRPG.Skills;
 
 namespace PokemonTextRPG.Monster
 {
+    // 포켓몬 고유 ID
+    public enum PokemonId
+    {
+        Charmander, // 파이리
+        Pidgey,     // 구구
+        Rattata     // 꼬렛
+    }
+
     // 포켓몬 딕셔너리
     public static class PokemonRepository
     {

@@ -62,9 +62,7 @@
     <Compile Include="Monster\PokemonRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skills\MoveType.cs" />
     <Compile Include="Skills\Skill.cs" />
-    <Compile Include="Skills\SkillId.cs" />
     <Compile Include="Skills\SkillRepository.cs" />
   </ItemGroup>
   <ItemGroup>
