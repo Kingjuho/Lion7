@@ -89,8 +89,8 @@ namespace PokemonTextRPG.Managers
                 _player.X = nextX;
                 _player.Y = nextY;
 
+                if (CheckPortal()) return;
                 CheckEvents();
-                CheckPortal();
             }
         }
 
@@ -119,11 +119,11 @@ namespace PokemonTextRPG.Managers
         }
 
         // 포탈 체크
-        private void CheckPortal()
+        private bool CheckPortal()
         {
             // 해당 위치에 포탈이 있는 지 체크
             Portal portal = _currentMap.GetPortal(_player.X, _player.Y);
-            if (portal == null) return;
+            if (portal == null) return false;
 
             // 있으면 맵 데이터 받아와 이동
             GameManager.Instance.ChangeMap(MapFactory.Create(portal.TargetMapId));
@@ -133,6 +133,7 @@ namespace PokemonTextRPG.Managers
 
             // 맵을 옮길 땐 반드시 콘솔 초기화
             Console.Clear();
+            return true;
         }
 
         // 상처약 사용(필드)

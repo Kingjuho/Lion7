@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PokemonTextRPG.Managers
 {
@@ -61,7 +62,7 @@ namespace PokemonTextRPG.Managers
             Console.Write(new string(c, Constants.SCREEN_WIDTH - 1));
         }
 
-        // 하단 메시지 출력
+        // 메시지 출력(기본값 = 하단)
         public static void ShowMessage(string message, int uiY = Constants.MESSAGE_LOCATION)
         {
             // 해당 줄 초기화
@@ -98,8 +99,16 @@ namespace PokemonTextRPG.Managers
         // 가운데 정렬 출력 헬퍼
         public static void PrintCenteredText(String message)
         {
-            // 가운데 정렬 계산 (화면 너비 - 문자열 길이) / 2
+            // 가운데 정렬 패딩 계산
             int padding = Math.Max(0, (Constants.SCREEN_WIDTH - GetDisplayLength(message)) / 2);
+            Console.WriteLine(new string(' ', padding) + message);
+        }
+
+        // 오른쪽 정렬 출력 헬퍼
+        public static void PrintRightAlignedText(string message)
+        {
+            // 오른쪽 정렬 패딩 계산(-1은 줄바꿈 방지)
+            int padding = Math.Max(0, Constants.SCREEN_WIDTH - 1 - GetDisplayLength(message));
             Console.WriteLine(new string(' ', padding) + message);
         }
     }

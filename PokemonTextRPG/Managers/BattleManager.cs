@@ -94,7 +94,7 @@ namespace PokemonTextRPG.Managers
         {
             Console.SetCursorPosition(0, 0);
 
-            // 상단 적 정보(너비 42칸에 맞춰 중앙 정렬 느낌으로)
+            // 상단 적 정보
             UIManager.DrawSeparator('=');
             Console.WriteLine($" {_enemy.Name} Lv.{_enemy.Level}");
             Console.WriteLine($" HP: {_enemy.CurrentHp}/{_enemy.MaxHp}".PadRight(Constants.SCREEN_WIDTH));
@@ -105,8 +105,8 @@ namespace PokemonTextRPG.Managers
 
             // 하단 내 포켓몬 정보
             UIManager.DrawSeparator('-');
-            Console.WriteLine($" {_myPokemon.Name} Lv.{_myPokemon.Level}");
-            Console.WriteLine($" HP: {_myPokemon.CurrentHp}/{_myPokemon.MaxHp}".PadRight(Constants.SCREEN_WIDTH));
+            UIManager.PrintRightAlignedText($"{_myPokemon.Name} Lv.{_myPokemon.Level} ");
+            UIManager.PrintRightAlignedText($"HP: {_myPokemon.CurrentHp}/{_myPokemon.MaxHp} ");
             UIManager.DrawSeparator('=');
 
             // UI 영역(로그 또는 메뉴)
