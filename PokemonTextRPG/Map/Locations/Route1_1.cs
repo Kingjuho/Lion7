@@ -31,8 +31,8 @@
             Initialize(design);
 
             // ~상록시티 4번 파츠
-            //Portals.Add(new Portal(9, 0, MapId.ViridianCity, 0, 0));
-            //Portals.Add(new Portal(10, 0, MapId.ViridianCity, 0, 0));
+            Portals.Add(new Portal(9, 0, MapId.ViridianCity_4, 9, 16));
+            Portals.Add(new Portal(10, 0, MapId.ViridianCity_4, 10, 16));
 
             // ~1번 도로 2번 파츠
             Portals.Add(new Portal(3, 17, MapId.Route1_2, 3, 1));
