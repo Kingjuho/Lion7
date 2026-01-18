@@ -46,6 +46,8 @@
     <Compile Include="Character\Player.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemRepository.cs" />
     <Compile Include="Managers\BattleManager.cs" />
     <Compile Include="Map\Locations\ViridianCity_1.cs" />
     <Compile Include="Map\Locations\ViridianCity_2.cs" />
@@ -72,8 +74,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Items\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

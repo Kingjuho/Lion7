@@ -47,6 +47,9 @@ namespace PokemonTextRPG
             // 초기 포켓몬 지급
             var starter = PokemonFactory.Create(PokemonId.Charmander, 5);
             _player.Team.Add(starter);
+
+            // 초기 아이템 지급
+            _player.AddItem(Items.ItemId.Potion, 5);
         }
 
         // 필드 화면 렌더링
@@ -100,12 +103,12 @@ namespace PokemonTextRPG
                 case ConsoleKey.DownArrow: nextY++; break;
                 case ConsoleKey.LeftArrow: nextX--; break;
                 case ConsoleKey.RightArrow: nextX++; break;
+                case ConsoleKey.Spacebar: UsePotionOnField(); return;
                 case ConsoleKey.Escape:
                     _isGameRunning = false; // 게임 종료
                     return;
                 default: return;
             }
-
 
             // 충돌 체크
             if (_currentMap.IsWalkable(nextX, nextY))
@@ -160,6 +163,49 @@ namespace PokemonTextRPG
 
             // 맵을 옮길 땐 반드시 콘솔 초기화
             Console.Clear();
+        }
+
+        // 상처약 사용
+        static void UsePotionOnField()
+        {
+            // 인벤토리 체크
+            var potionId = Items.ItemId.Potion;
+            int count = _player.GetItemCount(potionId);
+            if (count <= 0) return;
+
+            var partner = _player.Team[0];
+            var item = Items.ItemRepository.GetData(potionId);
+
+            bool isUsed = item.Use(partner);
+
+            if (isUsed)
+            {
+                _player.TryUseItem(potionId);
+                ShowMessage($"상처약을 사용했다! ({partner.Name} HP 회복) 남은 개수: {count - 1}");
+            }
+            else
+            {
+                ShowMessage($"{partner.Name}은(는) 이미 건강하다!");
+            }
+        }
+
+        // 하단 메시지 출력
+        static void ShowMessage(string message)
+        {
+            // 위치 매직 넘버
+            int uiY = 23;
+
+            // 하단부에 메시지 출력
+            Console.SetCursorPosition(0, uiY);
+            Console.WriteLine(new string(' ', Constants.SCREEN_WIDTH - 1));
+            Console.SetCursorPosition(0, uiY);
+            Console.Write($" [알림] {message}");
+
+            // 잠시 대기
+            Thread.Sleep(1000);
+
+            // 필드 UI 복구
+            RenderField();
         }
 
         static void Main(string[] args)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using PokemonTextRPG.Skills;
 
@@ -97,14 +98,16 @@ namespace PokemonTextRPG.Pokemons
         }
 
         // 힐(인자 없으면 풀피로)
-        public void Heal()
+        public bool Heal()
         {
             CurrentHp = MaxHp;
+            return true;
         }
-        public void Heal(int amount)
+        public bool Heal(int amount)
         {
-            CurrentHp += amount;
-            if (CurrentHp > MaxHp) CurrentHp = MaxHp;
+            if (CurrentHp >= MaxHp) return false;
+            CurrentHp = Math.Min(MaxHp, CurrentHp + amount);
+            return true;
         }
     }
 }
