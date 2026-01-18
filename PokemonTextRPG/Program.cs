@@ -103,18 +103,22 @@ namespace PokemonTextRPG
                 case ConsoleKey.Escape:
                     _isGameRunning = false; // 게임 종료
                     return;
+                default: return;
             }
+
 
             // 충돌 체크
             if (_currentMap.IsWalkable(nextX, nextY))
             {
+                // 안 움직이면 이벤트 실행 X
+                if (nextX == _player.X && nextY == _player.Y) return;
+                
                 _player.X = nextX;
                 _player.Y = nextY;
 
                 CheckEvents();
                 CheckPortal();
             }
-
         }
 
         // 이벤트 체크
@@ -126,6 +130,9 @@ namespace PokemonTextRPG
                 // 야생 포켓몬 조우
                 if (Constants.random.Next(0, 100) < Constants.APPEAR_PERCENTAGE)
                 {
+                    // 필드 이동 반영
+                    RenderField();
+
                     // 배틀 매니저 초기화 및 상태 전환 콜백
                     _battleManager.StartBattle(_player, PokemonFactory.CreateWildPokemon(), () =>
                     {

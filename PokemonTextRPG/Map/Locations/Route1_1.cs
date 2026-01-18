@@ -31,23 +31,24 @@
             Initialize(design);
 
             // ~상록시티 4번 파츠
-
+            //Portals.Add(new Portal(9, 0, MapId.ViridianCity, 0, 0));
+            //Portals.Add(new Portal(10, 0, MapId.ViridianCity, 0, 0));
 
             // ~1번 도로 2번 파츠
-            Portals.Add(new Portal(3, 17, MapId.Route1_2, 3, 0));
-            Portals.Add(new Portal(4, 17, MapId.Route1_2, 4, 0));
-            Portals.Add(new Portal(5, 17, MapId.Route1_2, 5, 0));
-            Portals.Add(new Portal(6, 17, MapId.Route1_2, 6, 0));
-            Portals.Add(new Portal(7, 17, MapId.Route1_2, 7, 0));
-            Portals.Add(new Portal(8, 17, MapId.Route1_2, 8, 0));
-            Portals.Add(new Portal(9, 17, MapId.Route1_2, 9, 0));
-            Portals.Add(new Portal(10, 17, MapId.Route1_2, 10, 0));
-            Portals.Add(new Portal(11, 17, MapId.Route1_2, 11, 0));
-            Portals.Add(new Portal(12, 17, MapId.Route1_2, 12, 0));
-            Portals.Add(new Portal(13, 17, MapId.Route1_2, 13, 0));
-            Portals.Add(new Portal(14, 17, MapId.Route1_2, 14, 0));
-            Portals.Add(new Portal(15, 17, MapId.Route1_2, 15, 0));
-            Portals.Add(new Portal(16, 17, MapId.Route1_2, 16, 0));
+            Portals.Add(new Portal(3, 17, MapId.Route1_2, 3, 1));
+            Portals.Add(new Portal(4, 17, MapId.Route1_2, 4, 1));
+            Portals.Add(new Portal(5, 17, MapId.Route1_2, 5, 1));
+            Portals.Add(new Portal(6, 17, MapId.Route1_2, 6, 1));
+            Portals.Add(new Portal(7, 17, MapId.Route1_2, 7, 1));
+            Portals.Add(new Portal(8, 17, MapId.Route1_2, 8, 1));
+            Portals.Add(new Portal(9, 17, MapId.Route1_2, 9, 1));
+            Portals.Add(new Portal(10, 17, MapId.Route1_2, 10, 1));
+            Portals.Add(new Portal(11, 17, MapId.Route1_2, 11, 1));
+            Portals.Add(new Portal(12, 17, MapId.Route1_2, 12, 1));
+            Portals.Add(new Portal(13, 17, MapId.Route1_2, 13, 1));
+            Portals.Add(new Portal(14, 17, MapId.Route1_2, 14, 1));
+            Portals.Add(new Portal(15, 17, MapId.Route1_2, 15, 1));
+            Portals.Add(new Portal(16, 17, MapId.Route1_2, 16, 1));
         }
     }
 }

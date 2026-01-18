@@ -31,20 +31,20 @@
             Initialize(design);
 
             // ~1번 도로 1번 파츠
-            Portals.Add(new Portal(3, 0, MapId.Route1_1, 3, 17));
-            Portals.Add(new Portal(4, 0, MapId.Route1_1, 4, 17));
-            Portals.Add(new Portal(5, 0, MapId.Route1_1, 5, 17));
-            Portals.Add(new Portal(6, 0, MapId.Route1_1, 6, 17));
-            Portals.Add(new Portal(7, 0, MapId.Route1_1, 7, 17));
-            Portals.Add(new Portal(8, 0, MapId.Route1_1, 8, 17));
-            Portals.Add(new Portal(9, 0, MapId.Route1_1, 9, 17));
+            Portals.Add(new Portal(3, 0, MapId.Route1_1, 3, 16));
+            Portals.Add(new Portal(4, 0, MapId.Route1_1, 4, 16));
+            Portals.Add(new Portal(5, 0, MapId.Route1_1, 5, 16));
+            Portals.Add(new Portal(6, 0, MapId.Route1_1, 6, 16));
+            Portals.Add(new Portal(7, 0, MapId.Route1_1, 7, 16));
+            Portals.Add(new Portal(8, 0, MapId.Route1_1, 8, 16));
+            Portals.Add(new Portal(9, 0, MapId.Route1_1, 9, 16));
             Portals.Add(new Portal(10, 0, MapId.Route1_1, 10, 17));
             Portals.Add(new Portal(11, 0, MapId.Route1_1, 11, 17));
             Portals.Add(new Portal(12, 0, MapId.Route1_1, 12, 17));
             Portals.Add(new Portal(13, 0, MapId.Route1_1, 13, 17));
-            Portals.Add(new Portal(14, 0, MapId.Route1_1, 14, 17));
-            Portals.Add(new Portal(15, 0, MapId.Route1_1, 15, 17));
-            Portals.Add(new Portal(16, 0, MapId.Route1_1, 16, 17));
+            Portals.Add(new Portal(14, 0, MapId.Route1_1, 14, 16));
+            Portals.Add(new Portal(15, 0, MapId.Route1_1, 15, 16));
+            Portals.Add(new Portal(16, 0, MapId.Route1_1, 16, 16));
 
             // ~태초마을
             Portals.Add(new Portal(9, 17, MapId.PalletTown, 10, 0));
