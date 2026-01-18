@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PokemonTextRPG.Monster
+﻿namespace PokemonTextRPG.Monster
 {
     public static class PokemonFactory
     {

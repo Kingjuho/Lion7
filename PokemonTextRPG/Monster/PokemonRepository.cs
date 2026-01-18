@@ -9,7 +9,7 @@ namespace PokemonTextRPG.Monster
     {
         Charmander, // 파이리
         Pidgey,     // 구구
-        Rattata     // 꼬렛
+        Rattata,     // 꼬렛
     }
 
     // 포켓몬 딕셔너리
@@ -21,7 +21,7 @@ namespace PokemonTextRPG.Monster
                 PokemonId.Charmander,
                 new PokemonData("파이리", new int[]{ 39, 52, 43, 60, 50, 65 }, new List<Skill>
                 {
-                    SkillRepository.GetData(SkillId.Tackle),
+                    SkillRepository.GetData(SkillId.Scratch),
                     SkillRepository.GetData(SkillId.Ember),
                 })
             },
@@ -30,7 +30,6 @@ namespace PokemonTextRPG.Monster
                 new PokemonData("구구", new int[]{ 40, 45, 40, 35, 35, 56 }, new List<Skill>
                 {
                     SkillRepository.GetData(SkillId.Tackle),
-                    SkillRepository.GetData(SkillId.Peck)
                 })
             },
             {
@@ -39,7 +38,7 @@ namespace PokemonTextRPG.Monster
                 {
                     SkillRepository.GetData(SkillId.Tackle),
                 })
-            }
+            },
         };
 
         // 데이터 조회 메서드
