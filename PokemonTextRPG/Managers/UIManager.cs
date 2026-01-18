@@ -5,6 +5,51 @@ namespace PokemonTextRPG.Managers
 {
     public static class UIManager
     {
+        // 메인 화면 그리기
+        public static void DrawMainMenu()
+        {
+            Console.Clear();
+
+            string title = @"
+  ___     _                      
+ | _ \___| |_____ _ __  ___ _ _  
+ |  _/ _ \ / / -_) '  \/ _ \ ' \ 
+ |_| \___/_\_\___|_|_|_\___/_||_|
+         | _ \ _ \/ __|          
+         |   /  _/ (_ |          
+         |_|_\_|  \___|   
+";
+
+            // 아스키아트 출력 위치
+            int titleY = Constants.SCREEN_HEIGHT / 5;
+            Console.SetCursorPosition(0, titleY);
+
+            // 줄바꿈 문자로 쪼개기
+            string[] lines = title.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            
+            // 가장 긴 줄의 길이 찾기
+            int maxWidth = 0;
+            foreach (string line in lines)
+            {
+                int len = GetDisplayLength(line);
+                if (len > maxWidth) maxWidth = len;
+            }
+
+            // 전체 그림을 가운데로
+            int padding = Math.Max(0, (Constants.SCREEN_WIDTH - maxWidth) / 2);
+            if (padding % 2 == 0) ++padding;
+            
+            string paddingStr = new string(' ', padding);
+
+            // 아스키아트 출력
+            foreach (string line in lines) Console.WriteLine(paddingStr + line);
+
+            // 시작 문구 출력
+            int messageY = (Constants.SCREEN_HEIGHT / 5) * 3;
+            Console.SetCursorPosition(0, messageY);
+            PrintCenteredText("Press [Enter] Key to Start");
+        }
+
         // 구분자 그리기 헬퍼
         public static void DrawSeparator(char c)
         {
@@ -38,7 +83,7 @@ namespace PokemonTextRPG.Managers
             Console.WriteLine(text + new string(' ', padding));
         }
 
-        // 한글(2바이트) 헬퍼
+        // 2바이트 문자 길이 계산
         public static int GetDisplayLength(string str)
         {
             int length = 0;
@@ -48,6 +93,14 @@ namespace PokemonTextRPG.Managers
                 else length += 1;
             }
             return length;
+        }
+
+        // 가운데 정렬 출력 헬퍼
+        public static void PrintCenteredText(String message)
+        {
+            // 가운데 정렬 계산 (화면 너비 - 문자열 길이) / 2
+            int padding = Math.Max(0, (Constants.SCREEN_WIDTH - GetDisplayLength(message)) / 2);
+            Console.WriteLine(new string(' ', padding) + message);
         }
     }
 }

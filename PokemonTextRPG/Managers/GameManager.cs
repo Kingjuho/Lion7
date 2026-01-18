@@ -13,7 +13,7 @@ namespace PokemonTextRPG.Managers
         public static GameManager Instance { get; private set; } = new GameManager();
 
         // 현재 모드
-        public GameState CurrentState { get; set; } = GameState.Field;
+        public GameState CurrentState { get; set; } = GameState.MainMenu;
         // 플레이어 인스턴스
         public Player Player { get; private set; }
         // 현재 맵 인스턴스
@@ -23,6 +23,19 @@ namespace PokemonTextRPG.Managers
         private FieldManager _fieldManager;
 
         private GameManager() { }
+
+        // 메인 메뉴 화면
+        public void ProcessMainMenu()
+        {
+            // 화면 그리기
+            UIManager.DrawMainMenu();
+
+            // 입력 대기 (여기서 멈춰 있음)
+            ConsoleKeyInfo key = Console.ReadKey(true);
+
+            // 엔터 키 누르면 게임 시작
+            if (key.Key == ConsoleKey.Enter) ChangeState(GameState.Field);
+        }
 
         // 게임 초기화 함수
         public void Initialize()
@@ -69,6 +82,9 @@ namespace PokemonTextRPG.Managers
             {
                 switch (CurrentState)
                 {
+                    case GameState.MainMenu:
+                        ProcessMainMenu();
+                        break;
                     case GameState.Field:
                         _fieldManager.Update();
                         break;
@@ -84,6 +100,16 @@ namespace PokemonTextRPG.Managers
         {
             CurrentMap = newMap;
             _fieldManager.SetMap(newMap);
+        }
+
+        // 상태 변경
+        public void ChangeState(GameState newState)
+        {
+            Console.Clear();
+            CurrentState = newState;
+
+            // 깜빡임 방지
+            if (newState == GameState.Field) _fieldManager.Update();
         }
     }
 }
