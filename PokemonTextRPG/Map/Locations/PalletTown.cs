@@ -29,6 +29,10 @@
             };
 
             Initialize(design);
+
+            // ~1번 도로 2번 파츠
+            Portals.Add(new Portal(10, 0, MapId.Route1_2, 9, 17));
+            Portals.Add(new Portal(11, 0, MapId.Route1_2, 10, 17));
         }
     }
 }

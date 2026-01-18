@@ -93,6 +93,7 @@ namespace PokemonTextRPG
             int nextX = _player.X;
             int nextY = _player.Y;
 
+            // 조작
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow: nextY--; break;
@@ -111,7 +112,9 @@ namespace PokemonTextRPG
                 _player.Y = nextY;
 
                 CheckEvents();
+                CheckPortal();
             }
+
         }
 
         // 이벤트 체크
@@ -133,6 +136,23 @@ namespace PokemonTextRPG
                     _currentState = GameState.Battle;
                 }
             }
+        }
+
+        // 포탈 체크
+        static void CheckPortal()
+        {
+            // 해당 위치에 포탈이 있는 지 체크
+            Portal portal = _currentMap.GetPortal(_player.X, _player.Y);
+            if (portal == null) return;
+
+            // 있으면 맵 데이터 받아와 이동
+            _currentMap = MapFactory.Create(portal.TargetMapId);
+
+            _player.X = portal.TargetX;
+            _player.Y = portal.TargetY;
+
+            // 맵을 옮길 땐 반드시 콘솔 초기화
+            Console.Clear();
         }
 
         static void Main(string[] args)

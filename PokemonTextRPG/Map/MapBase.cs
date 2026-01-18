@@ -1,4 +1,6 @@
-﻿namespace PokemonTextRPG.Map
+﻿using System.Collections.Generic;
+
+namespace PokemonTextRPG.Map
 {
     public abstract class MapBase
     {
@@ -12,6 +14,9 @@
         // 플레이어 시작 위치
         public int StartX { get; protected set; }
         public int StartY { get; protected set; }
+
+        // 포탈
+        public List<Portal> Portals { get; protected set; } = new List<Portal>();
 
         // 맵 렌더링
         protected void Initialize(string[] design)
@@ -47,6 +52,12 @@
         {
             if (x < 0 || x >= Width || y < 0 || y >= Height) return false;
             return _grid[y, x] == 'G';
+        }
+
+        // 포탈 확인
+        public Portal GetPortal(int x, int y)
+        {
+            return Portals.Find(p => p.X == x && p.Y == y);
         }
     }
 }
