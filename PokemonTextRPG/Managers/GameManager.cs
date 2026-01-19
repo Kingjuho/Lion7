@@ -3,7 +3,6 @@ using PokemonTextRPG.Map;
 using PokemonTextRPG.Map.Locations;
 using PokemonTextRPG.Pokemons;
 using System;
-using System.Threading;
 
 namespace PokemonTextRPG.Managers
 {
@@ -49,11 +48,13 @@ namespace PokemonTextRPG.Managers
             {
                 Console.SetWindowSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
                 Console.SetBufferSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+                Console.SetWindowSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
             }
             catch
             {
-                Console.WriteLine("해상도 설정 실패. 콘솔 폰트 크기를 줄인 후 다시 실행해주세요.");
-                Thread.Sleep(5000);
+                Console.WriteLine("해상도 설정 실패.");
+                Console.WriteLine("콘솔 속성 -> 글꼴 -> 'Consolas' 또는 '돋움체'로 설정해주세요.");
+                Console.ReadKey();
                 return;
             }
 
