@@ -43,19 +43,23 @@ namespace PokemonTextRPG.Managers
             Console.WriteLine(new string('=', Constants.SCREEN_WIDTH - 1));
 
             // 내 위치
-            UIManager.DrawSeparator(' ', uiY);
-            Console.SetCursorPosition(0, uiY++);
-            Console.Write($" [내 위치] ({_player.X:D2}, {_player.Y:D2})");
+            //UIManager.DrawSeparator(' ', uiY);
+            //Console.SetCursorPosition(0, uiY++);
+            //Console.Write($" [내 위치] ({_player.X:D2}, {_player.Y:D2})");
 
             // 선두 포켓몬
             UIManager.DrawSeparator(' ', uiY);
             Console.SetCursorPosition(0, uiY++);
-            Console.Write($" [파트너] {_player.Team[0].Name} Lv.{_player.Team[0].Level}");
+            Console.Write($" [파트너] {_player.Team[0].Name} Lv.{_player.Team[0].Level} {_player.Team[0].CurrentHp}/{_player.Team[0].MaxHp}");
 
             // 조작 키
             UIManager.DrawSeparator(' ', uiY);
-            Console.SetCursorPosition(0, uiY);
+            Console.SetCursorPosition(0, uiY++);
             Console.Write(" [Key] 방향키: 이동 / ESC: 종료");
+
+            UIManager.DrawSeparator(' ', uiY);
+            Console.SetCursorPosition(0, uiY++);
+            Console.Write($" SpaceBar: 상처약 사용(현재 {_player.GetItemCount(Items.ItemId.Potion)}개)");
         }
 
         // 키 입력
