@@ -9,9 +9,10 @@ namespace DesignPatternStudy
         static void Main(string[] args)
         {
             // 생성(Creational)
-            AbstractFactory.Run();
-            Builder.Run();
-            FactoryMethod.Run();
+            //AbstractFactory.Run();
+            //Builder.Run();
+            //FactoryMethod.Run();
+            Singleton.Run();
 
             // 구조(Structural)
 
